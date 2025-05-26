@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, fireEvent } from '@testing-library/react'; // Added fireEvent
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import { AuthContext, AuthContextType } from './context/AuthContext'; // Import AuthContext and its type
