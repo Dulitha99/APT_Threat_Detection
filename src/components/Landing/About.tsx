@@ -6,23 +6,32 @@ import styles from './About.module.css';
 const About: React.FC = () => {
   return (
     <div className={styles.about}>
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <Link to="/">Home</Link>
-        </nav>
-      </header>
+      {/* Removed header with single "Home" link */}
 
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>About SecureXDR</h1>
-          <p>Empowering organizations with advanced threat detection and response capabilities</p>
+          <p>Empowering organizations with advanced threat detection and response capabilities.</p>
         </div>
       </section>
 
-      <section className={styles.mission}>
+      <section className={styles.story}> {/* New Section: Founding Story/Vision */}
+        <div className={styles.storyContent}>
+          <h2>Our Origin & Vision</h2>
+          <p>
+            SecureXDR was born from a shared vision among cybersecurity professionals who saw a critical gap: 
+            many organizations lacked access to comprehensive, adaptable security tools. We envisioned a platform 
+            that was not only powerful but also open and community-driven, fostering collaboration to stay ahead 
+            of the ever-evolving threat landscape. Our goal is to make top-tier security accessible to all, 
+            creating a safer digital world together.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.mission}> {/* Renamed "Why SecureXDR?" to "Our Mission" */}
         <div className={styles.missionContent}>
           <div className={styles.missionText}>
-            <h2>Why SecureXDR?</h2>
+            <h2>Our Mission</h2> {/* Changed title */}
             <p>
               SecureXDR is an open-source solution designed to democratize advanced threat detection 
               and response capabilities. We believe that every organization, regardless of size or 
@@ -41,9 +50,35 @@ const About: React.FC = () => {
         </div>
       </section>
 
+      <section className={styles.values}> {/* New Section: Our Values */}
+        <div className={styles.valuesContent}>
+          <h2>Our Core Values</h2>
+          <div className={styles.valuesGrid}>
+            <div className={styles.valueCard}>
+              <div className={styles.valueIcon}>💡</div>
+              <h3>Innovation</h3>
+              <p>Continuously exploring new technologies and methodologies to counter emerging threats effectively.</p>
+            </div>
+            <div className={styles.valueCard}>
+              <div className={styles.valueIcon}>🤝</div>
+              <h3>Collaboration</h3>
+              <p>Fostering a strong community to share knowledge, insights, and contributions for collective security.</p>
+            </div>
+            <div className={styles.valueCard}>
+              <div className={styles.valueIcon}>🌐</div>
+              <h3>Accessibility</h3>
+              <p>Making advanced security tools available to all, ensuring transparency and open access.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className={styles.team}>
         <div className={styles.teamContent}>
           <h2>Our Team</h2>
+          <p className={styles.teamIntro}> {/* Added an intro paragraph for the team section */}
+            SecureXDR is driven by a dedicated team of cybersecurity experts, developers, and analysts passionate about open source and digital safety.
+          </p>
           <div className={styles.teamGrid}>
             <div className={styles.memberCard}>
               <img
@@ -152,52 +187,7 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <section className={styles.features}>
-        <div className={styles.featuresContent}>
-          <h2>Core Features</h2>
-          <div className={styles.featuresGrid}>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
-              </div>
-              <h3>Phishing Analysis</h3>
-              <p>Advanced detection and analysis of phishing attempts</p>
-            </div>
-
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <h3>Malware Analysis</h3>
-              <p>Comprehensive malware detection and analysis</p>
-            </div>
-
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-              </div>
-              <h3>Network Reconnaissance</h3>
-              <p>Real-time network monitoring and analysis</p>
-            </div>
-
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3>Windows Event Log Analysis</h3>
-              <p>Advanced Windows event log monitoring and analysis</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Removed Core Features section from About.tsx */}
 
       <section className={styles.cta}>
         <div className={styles.ctaContent}>

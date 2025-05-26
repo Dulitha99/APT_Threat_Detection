@@ -1,6 +1,6 @@
 .footer {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background-color: var(--footer-bg); /* Use CSS variable */
+  color: var(--footer-text); /* Use CSS variable */
   padding: 4rem 2rem;
 }
 
@@ -16,11 +16,11 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  color: var(--footer-text); /* Use CSS variable */
 }
 
 .footerSection p {
-  color: #9ca3af;
+  color: var(--footer-link); /* Use CSS variable */
   margin-bottom: 1.5rem;
 }
 
@@ -30,13 +30,13 @@
 }
 
 .social a {
-  color: #9ca3af;
+  color: var(--footer-link); /* Use CSS variable */
   font-size: 1.5rem;
   transition: color 0.3s ease;
 }
 
 .social a:hover {
-  color: #ffffff;
+  color: var(--footer-link-hover); /* Use CSS variable */
 }
 
 .footerSection ul {
@@ -49,24 +49,24 @@
 }
 
 .footerSection ul li a {
-  color: #9ca3af;
+  color: var(--footer-link); /* Use CSS variable */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footerSection ul li a:hover {
-  color: #ffffff;
+  color: var(--footer-link-hover); /* Use CSS variable */
 }
 
 .footerBottom {
   text-align: center;
   padding-top: 2rem;
   margin-top: 2rem;
-  border-top: 1px solid #374151;
+  border-top: 1px solid var(--border-color); /* Use CSS variable */
 }
 
 .footerBottom p {
-  color: #9ca3af;
+  color: var(--footer-link); /* Use CSS variable */
   font-size: 0.875rem;
 }
 
