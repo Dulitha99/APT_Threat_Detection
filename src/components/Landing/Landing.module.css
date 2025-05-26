@@ -2,145 +2,56 @@
 .landing {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: var(--text-color);
-  line-height: 1.6;
-}
-
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 5%;
-  background-color: var(--bg-color);
-  box-shadow: 0 2px 10px var(--shadow-color);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.logo h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 0;
-  color: var(--primary-color);
-}
-
-.logoTag {
-  background-color: var(--accent-color);
-  color: var(--primary-color);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-}
-
-.nav {
-  display: flex;
-  gap: 2rem;
-}
-
-.nav a {
-  color: var(--text-color);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
-  cursor: pointer;
-}
-
-.nav a:hover, .nav a.active {
-  color: var(--primary-color);
-}
-
-.nav a.active {
-  position: relative;
-}
-
-.nav a.active:after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary-color);
-}
-
-.auth {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.loginBtn, .signupBtn {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.loginBtn {
-  color: var(--text-color);
-}
-
-.loginBtn:hover {
-  color: var(--primary-color);
-}
-
-.signupBtn {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.signupBtn:hover {
-  background-color: var(--secondary-color);
+  /* line-height: 1.6; /* Removed to rely on global body line-height from index.css */
 }
 
 /* Hero Section */
 .hero {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 5rem 5%;
-  background: linear-gradient(to bottom, var(--bg-color), var(--hover-bg));
+  justify-content: center; /* Center .heroContent now that image is removed */
+  padding: 6rem 5%; /* Adjusted padding */
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%); /* New gradient */
+  color: #ffffff; /* Text color for hero section */
+  min-height: 70vh; /* Minimum viewport height */
+  text-align: center; /* Center text for children */
 }
 
 .heroContent {
-  max-width: 600px;
+  max-width: 800px; /* Increased max-width for centered content */
+  display: flex; /* Added for finer control */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center elements horizontally */
 }
 
 .heroContent h1 {
-  font-size: 3rem;
+  font-size: 3.5rem; /* Increased font size */
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff; /* Ensure white color, remove old gradient text */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Added text shadow */
 }
 
 .heroContent p {
-  font-size: 1.25rem;
-  color: var(--text-color);
-  margin-bottom: 2rem;
+  font-size: 1.2rem; /* Adjusted font size */
+  color: #e0e0e0; /* Lighter shade for paragraph */
+  margin-bottom: 2.5rem; /* Adjusted margin */
 }
 
 .heroButtons {
   display: flex;
   gap: 1rem;
   margin-bottom: 3rem;
+  justify-content: center; /* Ensure buttons are centered */
 }
 
+/* Updating global .primaryButton and .secondaryButton styles as per task for hero context */
 .primaryButton, .secondaryButton {
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 1.8rem; /* Adjusted padding */
   border-radius: 6px;
   font-weight: 500;
+  font-size: 1.1rem; /* Adjusted font-size */
   text-decoration: none;
   transition: all 0.2s;
   display: flex;
@@ -151,51 +62,28 @@
 .primaryButton {
   background-color: var(--primary-color);
   color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Added box-shadow */
 }
 
 .primaryButton:hover {
   background-color: var(--secondary-color);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3); /* Enhanced hover shadow */
 }
 
 .secondaryButton {
-  background-color: var(--hover-bg);
-  color: var(--text-color);
+  background-color: transparent; /* Changed background for hero context */
+  color: #ffffff; /* Changed text color for hero context */
+  border: 2px solid #ffffff; /* Added border for hero context */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Added box-shadow */
 }
 
 .secondaryButton:hover {
-  background-color: var(--border-color);
+  background-color: rgba(255,255,255,0.1); /* Refined hover for hero context */
+  border-color: #f0f0f0; /* Slightly change border color on hover */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Enhanced hover shadow */
 }
 
-.heroStats {
-  display: flex;
-  gap: 3rem;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.statNumber {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-.statLabel {
-  font-size: 0.875rem;
-  color: var(--text-color);
-}
-
-.heroImage {
-  max-width: 50%;
-}
-
-.heroImage img {
-  width: 100%;
-  height: auto;
-}
+/* Removed .heroStats and .heroImage classes */
 
 /* Section Headers */
 .sectionHeader {
@@ -231,7 +119,7 @@
   padding: 2rem;
   background-color: var(--card-bg);
   border-radius: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Standardized transition */
   box-shadow: 0 4px 6px var(--shadow-color);
 }
 
@@ -284,6 +172,12 @@
   background-color: var(--card-bg);
   border-radius: 8px;
   box-shadow: 0 4px 6px var(--shadow-color);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Added transition */
+}
+
+.tab:hover { /* Added hover effect */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--shadow-color);
 }
 
 .tab h3 {
@@ -351,7 +245,7 @@
   background-color: var(--card-bg);
   border-radius: 8px;
   position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Standardized transition */
   box-shadow: 0 4px 6px var(--shadow-color);
 }
 
@@ -503,7 +397,7 @@
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.2s;
-  background-color: var(--bg-color);
+  background-color: var(--input-bg); /* Changed from var(--bg-color) */
   color: var(--text-color);
 }
 
@@ -614,26 +508,18 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .hero {
-    flex-direction: column;
-    text-align: center;
-    gap: 3rem;
+    /* flex-direction: column; // Already centered, this might not be needed */
+    /* text-align: center; // Already set on .hero */
+    gap: 2rem; /* Adjusted gap for tablets */
   }
 
   .heroContent {
-    max-width: 100%;
+    max-width: 90%; /* Allow hero content to be a bit wider on tablets */
   }
 
-  .heroButtons {
-    justify-content: center;
-  }
+  /* .heroButtons justify-content: center; is already set */
 
-  .heroStats {
-    justify-content: center;
-  }
-
-  .heroImage {
-    max-width: 100%;
-  }
+  /* .heroStats and .heroImage responsive styles removed */
 
   .contactContainer {
     grid-template-columns: 1fr;
@@ -641,35 +527,27 @@
 }
 
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 5%;
-  }
-
-  .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .auth {
-    width: 100%;
-    justify-content: center;
-  }
+  /* .header, .nav, .auth responsive styles were removed in a previous step */
 
   .heroContent h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem; /* Adjusted for smaller tablets/large phones */
   }
 
+  .heroContent p {
+    font-size: 1.1rem; /* Adjusted for smaller tablets/large phones */
+  }
+  
   .heroButtons {
-    flex-direction: column;
+    flex-direction: column; /* Stack buttons */
+    align-items: center; /* Center stacked buttons */
   }
 
-  .heroStats {
-    flex-direction: column;
-    gap: 1.5rem;
+  .primaryButton, .secondaryButton { /* Make buttons wider when stacked */
+    width: 80%; 
+    justify-content: center; /* Center text/icon within button */
   }
+
+  /* .heroStats responsive styles removed */
 
   .featureGrid,
   .solutionTabs,
@@ -681,11 +559,21 @@
 
 @media (max-width: 480px) {
   .heroContent h1 {
-    font-size: 2rem;
+    font-size: 2.2rem; /* Adjusted for small phones */
+  }
+  
+  .heroContent p {
+    font-size: 1rem; /* Adjusted for small phones */
+  }
+
+  .primaryButton, .secondaryButton { /* Ensure stacked buttons are not too wide */
+    width: 90%;
+    padding: 0.8rem 1.5rem; /* Slightly smaller padding for very small screens */
+    font-size: 1rem; /* Slightly smaller font for very small screens */
   }
 
   .sectionHeader h2 {
-    font-size: 1.875rem;
+    font-size: 1.875rem; /* This was part of the original search block */
   }
 
   .featureCard,

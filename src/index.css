@@ -19,6 +19,20 @@
   --input-bg: #ffffff;
   --text-secondary: #6b7280;
   --primary-hover: #1d4ed8;
+  --icon-color: #6b7280; /* Added */
+  --error-color: #ef4444; /* Added */
+  --error-color-hover: #d92626; /* Added */
+  --severity-high-bg: rgba(255, 59, 48, 0.1); /* Added */
+  --severity-high-text: #ff3b30; /* Added */
+  --severity-medium-bg: rgba(255, 149, 0, 0.1); /* Added */
+  --severity-medium-text: #ff9500; /* Added */
+  --severity-low-bg: rgba(52, 199, 89, 0.1); /* Added */
+  --severity-low-text: #34c759; /* Added */
+  --primary-color-rgb-values: 37, 99, 235; /* Added for #2563eb */
+  --warning-text: #D97706; /* Amber 600 */
+  --warning-bg: rgba(245, 158, 11, 0.1); /* Amber 500 with opacity */
+  --success-text: #059669; /* Emerald 600 */
+  --success-bg: rgba(16, 185, 129, 0.1); /* Emerald 500 with opacity */
 }
 
 .dark {
@@ -35,13 +49,37 @@
   --footer-text: #f3f4f6;
   --footer-link: #9ca3af;
   --footer-link-hover: #ffffff;
-  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color: rgba(0, 0, 0, 0.4); /* Adjusted shadow for potentially better depth */
   --gradient-start: #1e3a8a;
   --gradient-end: #3b82f6;
   --toggle-bg: #4b5563;
   --input-bg: #1f2937;
   --text-secondary: #9ca3af;
   --primary-hover: #3b82f6;
+  --icon-color: #9ca3af; /* Added */
+  --error-color: #f87171; /* Added */
+  --error-color-hover: #dd5252; /* Added */
+  --severity-high-bg: rgba(255, 109, 98, 0.15); /* Adjusted for dark */
+  --severity-high-text: #ff8a80; /* Adjusted for dark */
+  --severity-medium-bg: rgba(255, 179, 80, 0.15); /* Adjusted for dark */
+  --severity-medium-text: #ffc87A; /* Adjusted for dark */
+  --severity-low-bg: rgba(102, 217, 139, 0.15); /* Adjusted for dark */
+  --severity-low-text: #82e0aa; /* Adjusted for dark */
+  --primary-color-rgb-values: 96, 165, 250; /* Added for #60a5fa */
+  --warning-text: #FBBF24; /* Amber 400 */
+  --warning-bg: rgba(251, 191, 36, 0.15); /* Amber 400 with opacity */
+  --success-text: #34D399; /* Emerald 400 */
+  --success-bg: rgba(52, 211, 153, 0.15); /* Emerald 400 with opacity */
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important; /* For @keyframes */
+    transition-duration: 0.01ms !important; /* For transitions */
+    scroll-behavior: auto !important;
+  }
 }
 
 * {

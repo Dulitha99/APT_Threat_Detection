@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
-interface FooterProps {
-  scrollToSection?: (sectionId: string) => void;
-}
+interface FooterProps {}
 
-const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
+const Footer: React.FC<FooterProps> = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>

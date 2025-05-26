@@ -10,11 +10,12 @@ const Pricing: React.FC = () => {
       period: 'per month',
       description: 'Perfect for small businesses',
       features: [
-        'Basic network monitoring',
-        'Up to 5 users',
-        'Email support',
-        'Basic reporting',
-        '1GB log storage'
+        'ML-based Threat Detection', // Enhanced
+        'Alert-based Monitoring', // Enhanced
+        'Basic Reporting',
+        'Community Support', // Enhanced
+        'Max 500 Events/day', // Enhanced
+        'Up to 5 users'
       ],
       icon: '🚀'
     },
@@ -24,13 +25,14 @@ const Pricing: React.FC = () => {
       period: 'per month',
       description: 'Ideal for growing companies',
       features: [
-        'Advanced network monitoring',
-        'Up to 20 users',
-        'Priority support',
-        'Advanced reporting',
-        '10GB log storage',
+        'Advanced ML-based Threat Detection', // Enhanced
+        'Business Hours Monitoring', // Enhanced
+        'Standard Reporting', // Enhanced
+        'Email Support', // Enhanced
+        'Max 5000 Events/day', // Enhanced
+        'Data Retention 30 days', // Enhanced
         'Malware analysis',
-        'Custom alerts'
+        'Up to 20 users'
       ],
       icon: '💼',
       popular: true
@@ -41,14 +43,16 @@ const Pricing: React.FC = () => {
       period: 'contact sales',
       description: 'For large organizations',
       features: [
-        'Full security suite',
-        'Unlimited users',
-        '24/7 dedicated support',
-        'Custom reporting',
-        'Unlimited log storage',
+        'Full-Suite ML Threat Detection', // Enhanced
+        '24/7 Monitoring & Alerting', // Enhanced
+        'Custom Reporting & Dashboards', // Enhanced
+        'Dedicated Support', // Enhanced
+        'Unlimited Events/day', // Enhanced
+        'Data Retention 1 year', // Enhanced
         'Advanced malware analysis',
         'Custom integrations',
-        'SLA guarantee'
+        'SLA guarantee',
+        'Unlimited users'
       ],
       icon: '🏢'
     }
