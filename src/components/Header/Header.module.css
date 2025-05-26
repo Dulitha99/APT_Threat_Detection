@@ -67,7 +67,6 @@
   gap: 2rem;
   margin: 0 auto; /* Center navigation for landing page */
 }
-
 /* Styles for navButton (used for both desktop and mobile nav links that are now buttons) */
 .navButton {
   background: none;
@@ -101,7 +100,6 @@
   z-index: 1050; /* Below hamburger, above content */
   border-top: 1px solid var(--border-color);
 }
-
 /* Specific styles for .navButton inside .mobileNav */
 .mobileNav .navButton {
   display: block; /* Make button take full width */
@@ -264,7 +262,6 @@
     order: 4; /* Full width, below the main header items */
     width: 100%; 
   }
-
   .search { /* Specific to Dashboard page */
     order: 4; /* After logo and right section, will wrap to new line */
     width: 100%; /* Take full width on its new line */
