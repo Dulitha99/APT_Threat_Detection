@@ -44,7 +44,13 @@ describe('App Routing and Layouts', () => {
 
   describe('LandingLayout', () => {
     test('renders Header with pageType="landing" and Landing page content for "/" route', () => {
-      const authValue: AuthContextType = { isAuthenticated: false, login: jest.fn(), logout: jest.fn() };
+      const authValue: AuthContextType = { 
+        isAuthenticated: false, 
+        user: null, 
+        login: jest.fn(), 
+        logout: jest.fn(),
+        signup: jest.fn() 
+      };
       renderWithRouterAndAuth(['/'], authValue);
 
       expect(screen.getByTestId('header-mock')).toBeInTheDocument();
@@ -56,7 +62,13 @@ describe('App Routing and Layouts', () => {
 
   describe('DashboardLayout', () => {
     test('renders Header, Sidebar, and page content for dashboard route when authenticated', () => {
-      const authValue: AuthContextType = { isAuthenticated: true, login: jest.fn(), logout: jest.fn() };
+      const authValue: AuthContextType = { 
+        isAuthenticated: true, 
+        user: { name: 'Test User', id: '1', email: 'test@example.com', role: 'user' }, 
+        login: jest.fn(), 
+        logout: jest.fn(),
+        signup: jest.fn() 
+      };
       renderWithRouterAndAuth(['/threat-intelligence'], authValue);
 
       expect(screen.getByTestId('header-mock')).toBeInTheDocument();
@@ -66,7 +78,13 @@ describe('App Routing and Layouts', () => {
     });
 
     test('redirects to /login for dashboard route when not authenticated', () => {
-      const authValue: AuthContextType = { isAuthenticated: false, login: jest.fn(), logout: jest.fn() };
+      const authValue: AuthContextType = { 
+        isAuthenticated: false, 
+        user: null, 
+        login: jest.fn(), 
+        logout: jest.fn(),
+        signup: jest.fn() 
+      };
       renderWithRouterAndAuth(['/threat-intelligence'], authValue);
       
       expect(screen.getByTestId('login-page-mock')).toBeInTheDocument();
@@ -76,7 +94,13 @@ describe('App Routing and Layouts', () => {
     });
 
     test('sidebar toggle button in Header functions correctly', () => {
-      const authValue: AuthContextType = { isAuthenticated: true, login: jest.fn(), logout: jest.fn() };
+      const authValue: AuthContextType = { 
+        isAuthenticated: true, 
+        user: { name: 'Test User', id: '1', email: 'test@example.com', role: 'user' }, 
+        login: jest.fn(), 
+        logout: jest.fn(),
+        signup: jest.fn() 
+      };
       renderWithRouterAndAuth(['/threat-intelligence'], authValue);
 
       const sidebarToggle = screen.getByTestId('sidebar-toggle-mock');
