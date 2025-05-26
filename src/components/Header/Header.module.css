@@ -1,32 +1,182 @@
+/* General Header Styles */
 .header {
-  height: 70px;
-  background-color: white;
-  border-bottom: 1px solid #eee;
+  height: 70px; /* Maintained height */
+  background-color: var(--bg-color); /* Use CSS variables */
+  border-bottom: 1px solid var(--border-color); /* Use CSS variables */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  position: fixed;
+  padding: 0 2.5%; /* Adjusted padding for better responsiveness */
+  position: sticky; /* Changed to sticky for better flow, can be fixed if preferred */
   top: 0;
   right: 0;
-  left: 250px;
-  z-index: 100;
+  left: 0; /* Will be overridden by inline style for dashboard */
+  z-index: 1000; /* Increased z-index */
+  box-shadow: 0 2px 10px var(--shadow-color); /* Added shadow like old landing header */
+}
+
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Wrapper for logo and potential sidebar toggle button */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space for a potential sidebar toggle */
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.logoTag {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Hamburger Button Styles */
+.hamburgerButton {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.8rem; /* Larger icon */
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1100; /* Ensure it's above other elements */
+}
+
+/* Desktop Landing Page Navigation Styles */
+.nav.desktopNav { /* Specific class for desktop nav */
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto; /* Center navigation for landing page */
+}
+
+.nav.desktopNav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.nav.desktopNav a:hover, .nav.desktopNav a.active { /* Assuming active class will be handled by JS */
+  color: var(--primary-color);
+}
+
+/* Mobile Navigation Menu Styles */
+.mobileNav {
+  display: none; /* Hidden by default, shown by JS */
+  flex-direction: column;
+  position: absolute;
+  top: 70px; /* Below the header */
+  left: 0;
+  right: 0;
+  background-color: var(--card-bg);
+  padding: 1rem 0;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  z-index: 1050; /* Below hamburger, above content */
+  border-top: 1px solid var(--border-color);
+}
+
+.mobileNav a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.75rem 2.5%; /* Use percentage for padding like header */
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 500;
+}
+
+.mobileNav a:last-child {
+  border-bottom: none;
+}
+
+.mobileNav a:hover {
+  background-color: var(--hover-bg);
+  color: var(--primary-color);
+}
+
+
+/* Dashboard Search Styles */
+.search {
+  flex-grow: 1; /* Allow search to take available space if nav is not present */
+  display: flex;
+  justify-content: center; /* Center search for dashboard */
 }
 
 .search input {
   padding: 10px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color); /* Use CSS variables */
   border-radius: 5px;
   width: 300px;
+  max-width: 400px; /* Max width for search */
   font-size: 14px;
+  background-color: var(--input-bg); /* Use CSS variables */
+  color: var(--text-color); /* Use CSS variables */
 }
 
+/* Right Section (Auth/User Info & Theme Toggle) */
 .right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1rem; /* Adjusted gap */
 }
 
+/* Landing Page Auth Buttons Styles */
+.auth {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.loginBtn, .signupBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid transparent; /* Base border */
+}
+
+.loginBtn {
+  color: var(--text-color);
+  background-color: transparent;
+}
+
+.loginBtn:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color); /* Add border on hover */
+}
+
+.signupBtn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.signupBtn:hover {
+  background-color: var(--secondary-color);
+}
+
+
+/* Dashboard Notifications & User Info Styles */
 .notifications {
   position: relative;
   cursor: pointer;
@@ -34,14 +184,14 @@
 
 .notifications i {
   font-size: 20px;
-  color: #666;
+  color: var(--icon-color); /* Use CSS variables */
 }
 
 .badge {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: #ff4757;
+  background-color: var(--error-color); /* Use CSS variables for badge color */
   color: white;
   border-radius: 50%;
   width: 18px;
@@ -67,5 +217,122 @@
 
 .name {
   font-weight: 500;
-  color: #333;
-} 
+  color: var(--text-color); /* Use CSS variables */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem; /* Reduce padding on smaller screens */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    height: auto; /* Auto height for wrapped items */
+    min-height: 70px;
+  }
+
+  .logo h1 {
+    font-size: 1.25rem; /* Smaller logo text */
+  }
+  
+  .logoTag {
+    font-size: 0.65rem;
+  }
+
+  .logoContainer {
+    order: 1;
+    flex-shrink: 0; /* Prevent logo from shrinking excessively */
+  }
+  
+  .hamburgerButton { /* Specific to Landing page */
+    display: block; 
+    order: 3; /* After logo and right section */
+    /* margin-left: 1rem; /* Add some space if .right is minimal, or let space-between handle it */
+  }
+
+  .nav.desktopNav { /* Hide desktop nav on mobile */
+    display: none; 
+  }
+  
+  .mobileNav { /* This is the one that opens for landing page */
+    order: 4; /* Full width, below the main header items */
+    width: 100%; 
+    /* display:flex or block is handled by Header.tsx when open by adding/removing this class or inline styles */
+  }
+
+  /* .nav general styles are now covered by .desktopNav and .mobileNav specifics */
+
+  .search { /* Specific to Dashboard page */
+    order: 4; /* After logo and right section, will wrap to new line */
+    width: 100%; /* Take full width on its new line */
+    margin-top: 0.5rem; /* Add space when it wraps */
+    /* padding: 0.5rem 0; /* Keep original padding */
+    /* border-top: 1px solid var(--border-color); /* Keep original separator */
+    /* NOTE: The padding and border-top for search were in the previous search block, 
+       but they were outside the hamburger/right reordering.
+       The original responsive CSS for .search already had these at 768px:
+       order: 3; width: 100%; padding: 0.5rem 0; border-top: 1px solid var(--border-color);
+       So, we just need to ensure its order is correct relative to other items if they are on the same line,
+       or confirm it correctly wraps. With flex-wrap: wrap on .header, it should wrap.
+    */
+  }
+
+  .search input {
+    width: 100%; /* Full width search input on mobile */
+  }
+
+  .right { /* Contains auth/user info & theme toggle */
+    order: 2; /* After logo, before hamburger (on landing) */
+    /* margin-left: auto; /* Let space-between on header handle alignment */
+    gap: 0.75rem; /* Reduce gap in right section */
+  }
+  
+  .loginBtn, .signupBtn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoContainer {
+    /* Potentially make logoContainer take less space if hamburger is on its right */
+    /* For now, default flex behavior should be okay */
+  }
+  .logo {
+    /* Was: flex-direction: column; align-items: flex-start; gap: 0.2rem; */
+    /* margin-right: auto; /* This was to push auth to right, but hamburger changes things */
+    /* Re-evaluating stacking for very small screens, might not be necessary if hamburger is present */
+  }
+  
+  .logo h1 {
+    font-size: 1.2rem; /* Keep this reduction */
+  }
+  
+  .logoTag {
+    font-size: 0.6rem; /* Keep this reduction */
+    padding: 0.15rem 0.3rem; /* Keep this reduction */
+  }
+  
+  .hamburgerButton {
+    font-size: 1.6rem; /* Slightly smaller hamburger for very small screens */
+    padding: 0.3rem;
+  }
+
+  /* .nav (desktop) is already hidden at 768px */
+  /* .mobileNav a font sizes can be adjusted here if needed */
+  .mobileNav a {
+    font-size: 0.9rem; /* Ensure mobile nav links are readable */
+    padding: 0.6rem 2.5%;
+  }
+  
+  .right {
+    gap: 0.5rem; /* Further reduce gap for ThemeToggle etc. */
+  }
+  
+  .auth {
+    gap: 0.5rem;
+  }
+  
+  .loginBtn, .signupBtn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}

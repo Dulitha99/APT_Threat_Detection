@@ -1,40 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react'; // Removed useState as it's not used
 import { Link } from 'react-router-dom';
-import ThemeToggle from '../Common/ThemeToggle';
 import Footer from '../Common/Footer';
+import useScrollAnimation from '../../hooks/useScrollAnimation'; // Import the hook
 import styles from './Landing.module.css';
 
-const Landing: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>('home');
+// Helper component for animated elements to avoid hook calls in loops
+const AnimatedElement: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+  animationType: 'fadeIn' | 'slideInUp';
+  initialClasses?: string; // e.g., "opacity-0 translateY-20"
+}> = ({ children, className, animationType, initialClasses }) => {
+  const ref = useScrollAnimation({
+    animationClass: `animate-${animationType}`, // e.g., animate-fadeIn
+    initialClass: initialClasses, // Pass initial state classes to the hook
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  return <div ref={ref} className={`${className || ''} scroll-animated ${initialClasses || ''}`}>{children}</div>;
+};
 
-  const scrollToSection = (sectionId: string) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+
+const Landing: React.FC = () => {
+  // For sections, we can apply animation directly
+  const featuresSectionRef = useScrollAnimation({ animationClass: 'animate-fadeIn', initialClass: 'opacity-0' });
+  const solutionsSectionRef = useScrollAnimation({ animationClass: 'animate-fadeIn', initialClass: 'opacity-0' });
+  const contactSectionRef = useScrollAnimation({ animationClass: 'animate-fadeIn', initialClass: 'opacity-0' });
 
   return (
     <div className={styles.landing}>
-      <header className={styles.header}>
-        <div className={styles.logo}>
-          <h1>SecureXDR</h1>
-          <span className={styles.logoTag}>Open Source</span>
-        </div>
-        <nav className={styles.nav}>
-          <a onClick={() => scrollToSection('home')} className={activeSection === 'home' ? styles.active : ''}>Home</a>
-          <a onClick={() => scrollToSection('features')} className={activeSection === 'features' ? styles.active : ''}>Features</a>
-          <a onClick={() => scrollToSection('solutions')} className={activeSection === 'solutions' ? styles.active : ''}>Solutions</a>
-          <a onClick={() => scrollToSection('contact')} className={activeSection === 'contact' ? styles.active : ''}>Contact</a>
-        </nav>
-        <div className={styles.auth}>
-          <Link to="/login" className={styles.loginBtn}>Login</Link>
-          <Link to="/signup" className={styles.signupBtn}>Sign Up</Link>
-          <ThemeToggle />
-        </div>
-      </header>
 
+      {/* Hero section typically doesn't have scroll animation as it's visible on load */}
       <section id="home" className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>Advanced Threat Detection & Response</h1>
@@ -46,97 +42,74 @@ const Landing: React.FC = () => {
             </a>
           </div>
         </div>
-        <div className={styles.heroImage}>
-          <img src="/images/hero-image.svg" alt="XDR Dashboard" />
-        </div>
+        {/* heroImage div removed as per subtask instructions */}
       </section>
 
-      <section id="features" className={styles.features}>
-        <div className={styles.sectionHeader}>
+      <section id="features" className={`${styles.features} scroll-animated opacity-0`} ref={featuresSectionRef}>
+        <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.sectionHeader}>
           <h2>Key Features</h2>
           <p>Comprehensive security features powered by Machine Learning</p>
-        </div>
+        </AnimatedElement>
         <div className={styles.featureGrid}>
-          <div className={styles.featureCard}>
-            <div className={styles.icon}>
-              <i className="fas fa-fish"></i>
-            </div>
+          {/* Example of applying to individual cards - can be done with a loop and map if data comes from array */}
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.featureCard}>
+            <div className={styles.icon}><i className="fas fa-fish"></i></div>
             <h3>Phishing Analysis</h3>
             <p>ML-powered detection and analysis of phishing attempts</p>
-          </div>
-          <div className={styles.featureCard}>
-            <div className={styles.icon}>
-              <i className="fas fa-bug"></i>
-            </div>
+          </AnimatedElement>
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.featureCard}>
+            <div className={styles.icon}><i className="fas fa-bug"></i></div>
             <h3>Malware Analysis</h3>
             <p>AI-driven malware detection and analysis</p>
-          </div>
-          <div className={styles.featureCard}>
-            <div className={styles.icon}>
-              <i className="fas fa-network-wired"></i>
-            </div>
+          </AnimatedElement>
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.featureCard}>
+            <div className={styles.icon}><i className="fas fa-network-wired"></i></div>
             <h3>Network Analysis</h3>
             <p>ML-based network traffic monitoring and anomaly detection</p>
-          </div>
-          <div className={styles.featureCard}>
-            <div className={styles.icon}>
-              <i className="fas fa-desktop"></i>
-            </div>
+          </AnimatedElement>
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.featureCard}>
+            <div className={styles.icon}><i className="fas fa-desktop"></i></div>
             <h3>Windows Event Log Analysis</h3>
             <p>AI-powered Windows event log monitoring and analysis</p>
-          </div>
+          </AnimatedElement>
         </div>
       </section>
 
-      <section id="solutions" className={styles.solutions}>
-        <div className={styles.sectionHeader}>
+      <section id="solutions" className={`${styles.solutions} scroll-animated opacity-0`} ref={solutionsSectionRef}>
+        <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.sectionHeader}>
           <h2>Solutions</h2>
           <p>Open-source security solutions for organizations of all sizes</p>
-        </div>
+        </AnimatedElement>
         <div className={styles.solutionTabs}>
-          <div className={styles.tab}>
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.tab}>
             <h3>Enterprise</h3>
             <p>Comprehensive security solution for large organizations</p>
-            <ul>
-              <li>Advanced ML-based threat detection</li>
-              <li>24/7 monitoring and alerting</li>
-              <li>Custom reporting</li>
-              <li>Community support</li>
-            </ul>
+            <ul><li>Advanced ML-based threat detection</li><li>24/7 monitoring and alerting</li><li>Custom reporting</li><li>Community support</li></ul>
             <Link to="/contact" className={styles.tabButton}>Learn More</Link>
-          </div>
-          <div className={styles.tab}>
+          </AnimatedElement>
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.tab}>
             <h3>Mid-Market</h3>
             <p>Balanced security solution for growing businesses</p>
-            <ul>
-              <li>ML-powered threat detection</li>
-              <li>Business hours monitoring</li>
-              <li>Standard reporting</li>
-              <li>Community support</li>
-            </ul>
+            <ul><li>ML-powered threat detection</li><li>Business hours monitoring</li><li>Standard reporting</li><li>Community support</li></ul>
             <Link to="/contact" className={styles.tabButton}>Learn More</Link>
-          </div>
-          <div className={styles.tab}>
+          </AnimatedElement>
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.tab}>
             <h3>SMB</h3>
             <p>Essential security solution for small businesses</p>
-            <ul>
-              <li>Basic ML-based threat detection</li>
-              <li>Alert-based monitoring</li>
-              <li>Basic reporting</li>
-              <li>Community support</li>
-            </ul>
+            <ul><li>Basic ML-based threat detection</li><li>Alert-based monitoring</li><li>Basic reporting</li><li>Community support</li></ul>
             <Link to="/contact" className={styles.tabButton}>Learn More</Link>
-          </div>
+          </AnimatedElement>
         </div>
       </section>
 
-      <section id="contact" className={styles.contact}>
-        <div className={styles.sectionHeader}>
+      <section id="contact" className={`${styles.contact} scroll-animated opacity-0`} ref={contactSectionRef}>
+        <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.sectionHeader}>
           <h2>Contact Us</h2>
           <p>Get in touch with our team for questions or support</p>
-        </div>
+        </AnimatedElement>
         <div className={styles.contactContainer}>
-          <div className={styles.contactInfo}>
+          {/* Applying animation to the two main columns of the contact section */}
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.contactInfo}>
             <div className={styles.contactItem}>
               <i className="fas fa-envelope"></i>
               <div>
@@ -158,8 +131,8 @@ const Landing: React.FC = () => {
                 <p>123 Security St, Cyber City</p>
               </div>
             </div>
-          </div>
-          <div className={styles.contactForm}>
+          </AnimatedElement>
+          <AnimatedElement animationType="slideInUp" initialClasses="opacity-0 translateY-20" className={styles.contactForm}>
             <form>
               <div className={styles.formGroup}>
                 <label htmlFor="name">Name</label>
@@ -183,7 +156,7 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      <Footer scrollToSection={scrollToSection} />
+      <Footer />
     </div>
   );
 };
