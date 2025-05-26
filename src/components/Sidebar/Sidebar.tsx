@@ -2,7 +2,11 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isMobileSidebarOpen?: boolean; // Optional for now, but will be used
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isMobileSidebarOpen }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,7 +18,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className={styles.sidebar}>
+    <div className={`${styles.sidebar} ${isMobileSidebarOpen ? styles.sidebarOpenMobile : ''}`}>
       <div className={styles.logo}>
         <h2>SecureXDR</h2>
       </div>
