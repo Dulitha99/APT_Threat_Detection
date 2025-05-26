@@ -152,7 +152,7 @@ const Landing: React.FC = () => {
               </div>
               <button type="submit" className={styles.submitButton}>Send Message</button>
             </form>
-          </div>
+          </AnimatedElement> {/* Corrected closing tag */}
         </div>
       </section>
 
