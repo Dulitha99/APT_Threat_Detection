@@ -1,0 +1,431 @@
+.dashboardContainer {
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.headerTitle h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #0066cc;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+.actionButton:hover {
+  background-color: #0052a3;
+  transform: translateY(-1px);
+}
+
+.secondaryButton {
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.secondaryButton:hover {
+  background-color: var(--bg-hover);
+  border-color: #0066cc;
+  color: #0066cc;
+}
+
+.buttonIcon {
+  font-size: 1.1rem;
+}
+
+.settingsContainer {
+  display: flex;
+  gap: 30px;
+}
+
+.settingsSidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.sidebarSection {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.sidebarSection h3 {
+  font-size: 16px;
+  color: var(--text-color);
+  margin: 0 0 16px 0;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.sidebarMenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebarItem {
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.sidebarItem:hover {
+  background-color: var(--hover-bg);
+}
+
+.activeItem {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.settingsContent {
+  display: grid;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.card {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  /* Remove the transform and box-shadow changes on hover */
+  /* transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); */
+}
+
+.card h2 {
+  margin: 0 0 1.5rem 0;
+  color: var(--text-color);
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.settingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.settingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  background-color: var(--bg-primary);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+}
+
+.settingItem:hover {
+  background-color: var(--bg-hover);
+  /* Remove the transform on hover */
+  /* transform: translateX(4px); */
+}
+
+.settingInfo {
+  flex: 1;
+}
+
+.settingHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.settingIcon {
+  font-size: 1.2rem;
+  color: #0066cc;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.settingHeader label {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.settingInfo p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.toggle {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--toggle-bg);
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background-color: #0066cc;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.select {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  min-width: 180px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.select:hover {
+  border-color: #0066cc;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+}
+
+/* Dark mode styles */
+:global(.dark-mode) {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-hover: #3d3d3d;
+  --text-secondary: #a0a0a0;
+  --border-color: #404040;
+  --toggle-bg: #404040;
+  --input-bg: #2d2d2d;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Light mode styles */
+:global(:not(.dark-mode)) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-hover: #f1f5f9;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --toggle-bg: #cbd5e1;
+  --input-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .settingsContainer {
+    flex-direction: column;
+  }
+  
+  .settingsSidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 1rem;
+  }
+
+  .dashboardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .headerActions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .settingItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardHeader h1 {
+    font-size: 24px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+  
+  .card h2 {
+    font-size: 18px;
+  }
+  
+  .actionButton {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+.darkMode {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.darkMode .dashboardHeader h1 {
+  color: var(--text-color);
+}
+
+.darkMode .card {
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.darkMode .card h2 {
+  color: var(--text-color);
+  border-bottom-color: var(--border-color);
+}
+
+.darkMode .card:hover {
+  /* Remove the box-shadow change on hover */
+  /* box-shadow: 0 6px 16px var(--shadow-color); */
+}
+
+.darkMode .settingItem {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.darkMode .settingHeader label {
+  color: var(--text-color);
+}
+
+.darkMode .settingInfo p {
+  color: var(--text-secondary);
+}
+
+.darkMode .select {
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.darkMode .select:hover {
+  border-color: var(--primary-color);
+}
+
+.darkMode .toggle input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+.settingDescription {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.settingValue {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.settingOption {
+  color: var(--text-color);
+} 
