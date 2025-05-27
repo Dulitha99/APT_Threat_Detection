@@ -1,32 +1,32 @@
 /* General Header Styles */
 .header {
   height: 70px; /* Maintained height */
-  background-color: var(--bg-color); /* Use CSS variables */
-  border-bottom: 1px solid var(--border-color); /* Use CSS variables */
+  background-color: var(--primary-bg); /* Updated */
+  border-bottom: 1px solid var(--border-color); /* Updated */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2.5%; /* Adjusted padding for better responsiveness */
-  position: sticky; /* Changed to sticky for better flow, can be fixed if preferred */
+  padding: 0 var(--spacing-lg); /* Updated - using theme spacing */
+  position: sticky; 
   top: 0;
   right: 0;
-  left: 0; /* Will be overridden by inline style for dashboard */
-  z-index: 1000; /* Increased z-index */
-  box-shadow: 0 2px 10px var(--shadow-color); /* Added shadow like old landing header */
+  left: 0; 
+  z-index: 1000; 
+  box-shadow: var(--shadow-md); /* Updated */
 }
 
 /* Logo Styles */
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-sm); /* Updated */
 }
 
 /* Wrapper for logo and potential sidebar toggle button */
 .logoContainer {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Space for a potential sidebar toggle */
+  gap: var(--spacing-md); /* Updated */
 }
 
 .logo a {
@@ -34,163 +34,206 @@
 }
 
 .logo h1 {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl); /* Updated */
   font-weight: 700;
   margin: 0;
-  color: var(--primary-color);
+  color: var(--accent-color); /* Updated */
 }
 
 .logoTag {
-  background-color: var(--accent-color);
-  color: var(--primary-color);
-  font-size: 0.75rem;
+  background-color: var(--accent-color); /* Updated */
+  color: var(--button-primary-text); /* Updated - ensure contrast */
+  font-size: var(--font-size-xs); /* Updated */
   font-weight: 600;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  padding: var(--spacing-xs) var(--spacing-sm); /* Updated */
+  border-radius: var(--border-radius-sm); /* Updated */
 }
 
 /* Hamburger Button Styles */
 .hamburgerButton {
-  display: none; /* Hidden by default */
+  display: none; 
   background: none;
   border: none;
-  color: var(--text-color);
-  font-size: 1.8rem; /* Larger icon */
+  color: var(--primary-text); /* Updated */
+  font-size: var(--font-size-xl); /* Updated - adjust as needed */
   cursor: pointer;
-  padding: 0.5rem;
-  z-index: 1100; /* Ensure it's above other elements */
+  padding: var(--spacing-sm); /* Updated */
+  z-index: 1100; 
+  border-radius: var(--border-radius-sm); /* Add border-radius for focus outline */
+}
+
+.hamburgerButton:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
 /* Desktop Landing Page Navigation Styles */
-.nav.desktopNav { /* Specific class for desktop nav */
+.nav.desktopNav { 
   display: flex;
-  gap: 2rem;
-  margin: 0 auto; /* Center navigation for landing page */
+  gap: var(--spacing-lg); /* Updated */
+  margin: 0 auto; 
 }
 
-.nav.desktopNav a {
-  color: var(--text-color);
+.nav.desktopNav a { /* This was for anchor tags, will be used by navLinkButton now */
+  color: var(--primary-text); /* Updated */
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
   cursor: pointer;
 }
 
-.nav.desktopNav a:hover, .nav.desktopNav a.active { /* Assuming active class will be handled by JS */
-  color: var(--primary-color);
+.nav.desktopNav a:hover, .nav.desktopNav a.active { 
+  color: var(--accent-color); /* Updated */
 }
 
-.navLinkButton { /* Style for buttons that should look like nav links */
+.navLinkButton { 
   background: none;
   border: none;
   padding: 0;
   margin: 0;
-  font: inherit; /* Inherit font from parent */
-  color: var(--text-color);
+  font: inherit; 
+  color: var(--primary-text); /* Updated */
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
   cursor: pointer;
-  display: inline-block; /* Or block, depending on context */
+  display: inline-block; 
+  border-radius: var(--border-radius-sm); /* Add border-radius for focus outline */
 }
 
 .navLinkButton:hover {
-  color: var(--primary-color);
+  color: var(--accent-color); /* Updated */
+  transform: translateY(-1px); /* Subtle lift */
+}
+
+.navLinkButton:focus-visible {
+  color: var(--accent-color); /* Ensure text color changes on focus */
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
 /* Mobile Navigation Menu Styles */
 .mobileNav {
-  display: none; /* Hidden by default, shown by JS */
+  display: none; 
   flex-direction: column;
   position: absolute;
-  top: 70px; /* Below the header */
+  top: 70px; 
   left: 0;
   right: 0;
-  background-color: var(--card-bg);
-  padding: 1rem 0;
-  box-shadow: 0 4px 6px var(--shadow-color);
-  z-index: 1050; /* Below hamburger, above content */
-  border-top: 1px solid var(--border-color);
+  background-color: var(--card-bg); /* Updated */
+  padding: var(--spacing-md) 0; /* Updated */
+  box-shadow: var(--shadow-lg); /* Updated */
+  z-index: 1050; 
+  border-top: 1px solid var(--border-color); /* Updated */
 }
 
-.mobileNav a {
-  color: var(--text-color);
+.mobileNav a, .mobileNav .navLinkButton { /* Apply to buttons in mobile nav too */
+  color: var(--primary-text); /* Updated */
   text-decoration: none;
-  padding: 0.75rem 2.5%; /* Use percentage for padding like header */
+  padding: var(--spacing-md) var(--spacing-lg); /* Updated, consistent padding */
   display: block;
   text-align: center;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--divider-color); /* Updated */
   font-weight: 500;
+  transition: background-color var(--transition-speed-fast) ease-in-out, color var(--transition-speed-fast) ease-in-out;
+  border-radius: 0; /* Full width, so radius might not be desired or use sm if items are inset */
 }
 
-.mobileNav a:last-child {
+.mobileNav a:last-child, .mobileNav .navLinkButton:last-child {
   border-bottom: none;
 }
 
-.mobileNav a:hover {
-  background-color: var(--hover-bg);
-  color: var(--primary-color);
+.mobileNav a:hover, .mobileNav .navLinkButton:hover {
+  background-color: var(--secondary-bg); /* Updated for subtle hover */
+  color: var(--accent-color); /* Updated */
+}
+
+.mobileNav a:focus-visible, .mobileNav .navLinkButton:focus-visible {
+  background-color: var(--secondary-bg); 
+  color: var(--accent-color);
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px; /* Offset inwards due to full width */
 }
 
 
 /* Dashboard Search Styles */
 .search {
-  flex-grow: 1; /* Allow search to take available space if nav is not present */
+  flex-grow: 1; 
   display: flex;
-  justify-content: center; /* Center search for dashboard */
+  justify-content: center; 
 }
 
 .search input {
-  padding: 10px 15px;
-  border: 1px solid var(--border-color); /* Use CSS variables */
-  border-radius: 5px;
+  padding: var(--spacing-sm) var(--spacing-md); /* Updated */
+  border: 1px solid var(--input-border); /* Updated */
+  border-radius: var(--border-radius-md); /* Updated */
   width: 300px;
-  max-width: 400px; /* Max width for search */
-  font-size: 14px;
-  background-color: var(--input-bg); /* Use CSS variables */
-  color: var(--text-color); /* Use CSS variables */
+  max-width: 400px; 
+  font-size: var(--font-size-sm); /* Updated */
+  background-color: var(--input-bg); /* Updated */
+  color: var(--input-text); /* Updated */
+  transition: border-color var(--transition-speed-fast) ease-in-out, box-shadow var(--transition-speed-fast) ease-in-out;
+}
+
+.search input:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px var(--accent-color-hover); /* Consistent focus shadow */
 }
 
 /* Right Section (Auth/User Info & Theme Toggle) */
 .right {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Adjusted gap */
+  gap: var(--spacing-md); /* Updated */
 }
 
 /* Landing Page Auth Buttons Styles */
 .auth {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md); /* Updated */
   align-items: center;
 }
 
 .loginBtn, .signupBtn {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  padding: var(--spacing-sm) var(--spacing-md); /* Updated */
+  border-radius: var(--border-radius-md); /* Updated */
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s;
-  border: 1px solid transparent; /* Base border */
-}
-
-.loginBtn {
-  color: var(--text-color);
-  background-color: transparent;
+  transition: background-color var(--transition-speed-fast) ease-in-out, 
+              color var(--transition-speed-fast) ease-in-out,
+              border-color var(--transition-speed-fast) ease-in-out,
+              transform var(--transition-speed-fast) ease-in-out;
+  border: 1px solid transparent; 
+  font-size: var(--font-size-sm); /* Added for consistency */
 }
 
 .loginBtn:hover {
-  color: var(--primary-color);
-  border-color: var(--primary-color); /* Add border on hover */
+  color: var(--accent-color); /* Updated */
+  border-color: var(--accent-color); /* Updated */
+  transform: translateY(-1px); /* Subtle lift */
+}
+
+.loginBtn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  color: var(--accent-color); /* Ensure text color changes on focus */
 }
 
 .signupBtn {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--button-primary-bg); /* Updated */
+  color: var(--button-primary-text); /* Updated */
 }
 
 .signupBtn:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--button-primary-hover-bg); /* Updated */
+  transform: translateY(-1px); /* Subtle lift */
+}
+
+.signupBtn:focus-visible {
+  outline: 2px solid var(--button-primary-hover-bg);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--primary-bg), 0 0 0 4px var(--button-primary-hover-bg); /* Inner and outer shadow for contrast */
 }
 
 
@@ -198,33 +241,62 @@
 .notifications {
   position: relative;
   cursor: pointer;
+  padding: var(--spacing-xs); /* Add padding for focus outline */
+  border-radius: var(--border-radius-md); /* Add radius for focus outline */
+  transition: background-color var(--transition-speed-fast) ease-in-out;
+}
+.notifications:hover {
+  background-color: var(--tertiary-bg);
+}
+.notifications:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+  background-color: var(--tertiary-bg);
 }
 
-.notifications i {
-  font-size: 20px;
-  color: var(--icon-color); /* Use CSS variables */
+.notifications .icon, .user .icon { /* General icon styling in notifications/user */
+  font-size: var(--font-size-lg); /* Updated */
+  color: var(--secondary-text); /* Updated for icons */
+  display: flex; /* Helps with alignment if needed */
+  align-items: center;
+}
+
+.user .avatarIcon { /* Specific for the user avatar if it's an icon */
+  font-size: calc(var(--font-size-xl) * 1.5); /* Larger for avatar */
+  color: var(--secondary-text);
 }
 
 .badge {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: var(--error-color); /* Use CSS variables for badge color */
-  color: white;
+  background-color: var(--error-color); /* Updated */
+  color: var(--button-primary-text); /* Ensure contrast, typically white/light text */
   border-radius: 50%;
   width: 18px;
   height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: var(--font-size-xs); /* Updated */
 }
 
 .user {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-sm); /* Updated */
   cursor: pointer;
+  padding: var(--spacing-xs); /* Add padding for focus outline */
+  border-radius: var(--border-radius-md); /* Add radius for focus outline */
+  transition: background-color var(--transition-speed-fast) ease-in-out;
+}
+.user:hover {
+  background-color: var(--tertiary-bg);
+}
+.user:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+  background-color: var(--tertiary-bg);
 }
 
 .avatar {
@@ -235,24 +307,32 @@
 
 .name {
   font-weight: 500;
-  color: var(--text-color); /* Use CSS variables */
+  color: var(--primary-text); /* Updated */
 }
+
+/* Ensure hamburger icons are styled */
+.hamburgerButton svg {
+  display: block; /* Remove extra space below inline SVGs */
+  font-size: var(--font-size-xl); /* Consistent with text based X/Menu */
+  color: var(--primary-text);
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .header {
-    padding: 0 1rem; /* Reduce padding on smaller screens */
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
-    height: auto; /* Auto height for wrapped items */
+    padding: 0 var(--spacing-md); /* Updated: Reduce padding on smaller screens */
+    flex-wrap: wrap; 
+    height: auto; 
     min-height: 70px;
   }
 
   .logo h1 {
-    font-size: 1.25rem; /* Smaller logo text */
+    font-size: var(--font-size-lg); /* Updated: Smaller logo text */
   }
   
   .logoTag {
-    font-size: 0.65rem;
+    font-size: var(--font-size-xs); /* Updated: ~0.75rem, 0.65rem is not in theme */
   }
 
   .logoContainer {
@@ -279,11 +359,11 @@
   /* .nav general styles are now covered by .desktopNav and .mobileNav specifics */
 
   .search { /* Specific to Dashboard page */
-    order: 4; /* After logo and right section, will wrap to new line */
-    width: 100%; /* Take full width on its new line */
-    margin-top: 0.5rem; /* Add space when it wraps */
-    /* padding: 0.5rem 0; /* Keep original padding */
-    /* border-top: 1px solid var(--border-color); /* Keep original separator */
+    order: 4; 
+    width: 100%; 
+    margin-top: var(--spacing-sm); /* Updated: Add space when it wraps */
+    /* padding: var(--spacing-sm) 0; */ /* Keep original padding */
+    /* border-top: 1px solid var(--border-color); */ /* Keep original separator */
     /* NOTE: The padding and border-top for search were in the previous search block, 
        but they were outside the hamburger/right reordering.
        The original responsive CSS for .search already had these at 768px:
@@ -298,14 +378,14 @@
   }
 
   .right { /* Contains auth/user info & theme toggle */
-    order: 2; /* After logo, before hamburger (on landing) */
-    /* margin-left: auto; /* Let space-between on header handle alignment */
-    gap: 0.75rem; /* Reduce gap in right section */
+    order: 2; 
+    /* margin-left: auto; */ /* Let space-between on header handle alignment */
+    gap: var(--spacing-sm); /* Updated: Reduce gap in right section */
   }
   
   .loginBtn, .signupBtn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
+    padding: var(--spacing-xs) var(--spacing-sm); /* Updated */
+    font-size: var(--font-size-sm); /* Updated: ~0.875rem, 0.9rem not in theme */
   }
 }
 
@@ -321,36 +401,38 @@
   }
   
   .logo h1 {
-    font-size: 1.2rem; /* Keep this reduction */
+    font-size: var(--font-size-md); /* Updated: ~1rem, 1.2rem not in theme */
   }
   
   .logoTag {
-    font-size: 0.6rem; /* Keep this reduction */
-    padding: 0.15rem 0.3rem; /* Keep this reduction */
+    font-size: var(--font-size-xs); /* Updated: ~0.75rem, 0.6rem not in theme */
+    padding: var(--spacing-xs) var(--spacing-xs); /* Updated */
   }
   
-  .hamburgerButton {
-    font-size: 1.6rem; /* Slightly smaller hamburger for very small screens */
-    padding: 0.3rem;
+  .hamburgerButton svg { /* Target SVG for icon size */
+    font-size: var(--font-size-lg); /* Updated: ~1.125rem, 1.6rem not standard */
+  }
+   .hamburgerButton { /* Keep padding if separate from icon size */
+    padding: var(--spacing-xs); /* Updated */
   }
 
   /* .nav (desktop) is already hidden at 768px */
   /* .mobileNav a font sizes can be adjusted here if needed */
-  .mobileNav a {
-    font-size: 0.9rem; /* Ensure mobile nav links are readable */
-    padding: 0.6rem 2.5%;
+  .mobileNav a, .mobileNav .navLinkButton {
+    font-size: var(--font-size-sm); /* Updated: ~0.875rem */
+    padding: var(--spacing-sm) var(--spacing-lg); /* Updated */
   }
   
   .right {
-    gap: 0.5rem; /* Further reduce gap for ThemeToggle etc. */
+    gap: var(--spacing-sm); /* Updated: Further reduce gap for ThemeToggle etc. */
   }
   
   .auth {
-    gap: 0.5rem;
+    gap: var(--spacing-sm); /* Updated */
   }
   
   .loginBtn, .signupBtn {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.8rem;
+    padding: var(--spacing-xs) var(--spacing-xs); /* Updated */
+    font-size: var(--font-size-xs); /* Updated */
   }
 }

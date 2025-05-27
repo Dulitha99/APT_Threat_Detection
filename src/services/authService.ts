@@ -1,50 +1,105 @@
-import apiClient from './apiClient';
-import { loginSuccessResponse, signupSuccessResponse, errorResponse, mockUser } from '../mocks/auth';
+// src/services/authService.ts
+// Remove direct apiClient import if all auth is mocked and doesn't hit /api
+// import apiClient from './apiClient'; 
 
-// Simulate a delay for API calls
-const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+import {
+  simulateLogin,
+  simulateSignup,
+  LoginSuccessResponse,
+  LoginErrorResponse,
+  SignupSuccessResponse,
+  SignupErrorResponse,
+  MockUser, // For getCurrentUser return type
+  AuthUserResponse // For storing in localStorage
+} from '../mocks/auth'; 
 
-export const login = async (credentials: any) => {
-  await simulateDelay(1000); // Simulate network delay
-  if (credentials.username === 'testuser' && credentials.password === 'password') {
-    // In a real app, you'd get this from apiClient.post('/login', credentials)
-    // For mock, we directly return success
-    localStorage.setItem('authToken', loginSuccessResponse.token);
-    localStorage.setItem('user', JSON.stringify(mockUser)); // Store mock user
-    return { data: loginSuccessResponse };
-  } else {
-    // Simulate API error
-    // In a real app: throw error.response from axios
-    return Promise.reject({ response: { data: errorResponse('Invalid credentials', 401), status: 401 } });
+// Define types for credentials and user data used by the service
+interface LoginCredentials {
+  username: string;
+  password?: string; // Password can be optional if, for example, using OAuth in a real app
+}
+
+interface SignupData {
+  username: string;
+  email: string;
+  password?: string; // Password might be handled differently depending on auth strategy
+  // Add other fields as necessary, e.g., name
+}
+
+export const loginUser = async (
+  credentials: LoginCredentials
+): Promise<LoginSuccessResponse | LoginErrorResponse> => {
+  // In a real app, this would be:
+  // const response = await apiClient.post('/auth/login', credentials);
+  // For mock:
+  const response = await simulateLogin(credentials.username, credentials.password);
+
+  if (response.success) {
+    localStorage.setItem('authToken', response.token);
+    localStorage.setItem('authUser', JSON.stringify(response.user));
   }
+  return response;
 };
 
-export const signup = async (userInfo: any) => {
-  await simulateDelay(1500);
-  // Simulate successful signup
-  // In a real app: apiClient.post('/signup', userInfo)
-  if (userInfo.username && userInfo.email && userInfo.password) {
-    return { data: signupSuccessResponse };
-  } else {
-    return Promise.reject({ response: { data: errorResponse('Missing required fields'), status: 400 } });
+export const signupUser = async (
+  userData: SignupData
+): Promise<SignupSuccessResponse | SignupErrorResponse> => {
+  // In a real app:
+  // const response = await apiClient.post('/auth/signup', userData);
+  // For mock:
+  // Ensure password is provided for signup simulation
+  if (!userData.password) {
+    return Promise.resolve({ success: false, message: 'Password is required for signup.' });
   }
+  const response = await simulateSignup({
+    username: userData.username,
+    email: userData.email,
+    password: userData.password,
+  });
+
+  if (response.success) {
+    // Optionally, you might want to log the user in directly or require them to log in after signup.
+    // The current mock simulateSignup provides a token, so we can store it.
+    localStorage.setItem('authToken', response.token);
+    localStorage.setItem('authUser', JSON.stringify(response.user));
+  }
+  return response;
 };
 
-export const logout = async () => {
-  await simulateDelay(500);
+export const logoutUser = async (): Promise<void> => {
+  // In a real app, you might also call an API endpoint:
+  // await apiClient.post('/auth/logout');
   localStorage.removeItem('authToken');
-  localStorage.removeItem('user');
-  // In a real app, you might also call an API endpoint: apiClient.post('/logout')
-  return { data: { message: 'Logout successful' } };
+  localStorage.removeItem('authUser');
+  // No need to simulate delay here as it's a local operation primarily
+  return Promise.resolve();
 };
 
-// Function to get current user (e.g., for AuthContext)
-export const getCurrentUser = async () => {
-  await simulateDelay(300);
-  const token = localStorage.getItem('authToken');
-  const userStr = localStorage.getItem('user');
-  if (token && userStr) {
-    return { data: JSON.parse(userStr) };
+export const getCurrentUser = (): AuthUserResponse | null => {
+  const userStr = localStorage.getItem('authUser');
+  if (userStr) {
+    try {
+      return JSON.parse(userStr) as AuthUserResponse;
+    } catch (error) {
+      console.error("Error parsing authUser from localStorage:", error);
+      return null;
+    }
   }
-  return Promise.reject('No active session');
+  return null;
 };
+
+export const isAuthenticated = (): boolean => {
+  const token = localStorage.getItem('authToken');
+  return !!token; // Returns true if token exists and is not an empty string, false otherwise
+};
+
+// Example of how a service might fetch full user details if needed (not part of current task but for context)
+// import { getMockUserById } from '../mocks/auth';
+// export const fetchUserProfile = async (): Promise<MockUser | null> => {
+//   const currentUser = getCurrentUser();
+//   if (currentUser && currentUser.id) {
+//     const userProfile = await getMockUserById(currentUser.id);
+//     return userProfile || null;
+//   }
+//   return null;
+// };
