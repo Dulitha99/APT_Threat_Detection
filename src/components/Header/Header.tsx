@@ -99,6 +99,7 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
       {pageType === 'landing' && isMobileMenuOpen && navLinks && scrollToSection && (
         <nav className={styles.mobileNav}>
           {navLinks.map(link => (
+
             <button
               key={link.id}
               type="button"
