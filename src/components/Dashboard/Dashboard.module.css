@@ -143,20 +143,33 @@
   font-weight: 500;
 }
 
-.eventSeverity:has(+ .High) {
-  background-color: var(--severity-high-bg); /* Use CSS variable */
-  color: var(--severity-high-text); /* Use CSS variable */
+/* Severity Tag Styles */
+.eventSeverityTag {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-lg); /* Pill shape */
+  font-size: calc(var(--font-size-sm) * 0.85); /* Slightly smaller than base small */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent; /* Base border */
 }
 
-.eventSeverity:has(+ .Medium) {
-  background-color: var(--severity-medium-bg); /* Use CSS variable */
-  color: var(--severity-medium-text); /* Use CSS variable */
+.severityHigh {
+  background-color: var(--danger-color-muted);
+  color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+.severityMedium {
+  background-color: var(--warning-color-muted);
+  color: var(--warning-color);
+  border-color: var(--warning-color);
+}
+.severityLow {
+  background-color: var(--info-color-muted);
+  color: var(--info-color);
+  border-color: var(--info-color);
 }
 
-.eventSeverity:has(+ .Low) {
-  background-color: var(--severity-low-bg); /* Use CSS variable */
-  color: var(--severity-low-text); /* Use CSS variable */
-}
 
 .tools {
   display: grid;
@@ -239,6 +252,28 @@
   margin: 4px 0;
 }
 
+/* Error State Styling */
+.errorState {
+  padding: var(--spacing-xl);
+  text-align: center;
+  background-color: var(--danger-color-muted);
+  border: 1px solid var(--danger-color);
+  border-radius: var(--border-radius-md);
+  color: var(--danger-color);
+}
+.errorState p {
+  margin-bottom: var(--spacing-lg);
+  color: var(--danger-color); /* Ensure paragraph text also uses the correct color */
+}
+.errorState .actionButton { /* Overrides for button within error state if needed */
+  background-color: var(--danger-color);
+  color: white;
+}
+.errorState .actionButton:hover {
+  background-color: var(--danger-color-darker); /* Assuming --danger-color-darker is defined */
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .dashboardHeader {
@@ -289,4 +324,9 @@
   .tools {
     grid-template-columns: 1fr;
   }
-} 
+}
+
+/* Added fullWidthCard style */
+.fullWidthCard {
+  grid-column: 1 / -1; /* Makes card span all columns */
+}

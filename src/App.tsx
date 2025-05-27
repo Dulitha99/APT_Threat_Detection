@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext'; // Import useTheme
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import Landing from './components/Landing/Landing';
@@ -14,8 +16,8 @@ import EventLogsDashboard from './components/Dashboard/EventLogsDashboard';
 import Settings from './components/Settings/Settings';
 import Features from './components/Landing/Features';
 import Solutions from './components/Landing/Solutions';
-import Pricing from './components/Landing/Pricing';
 import Contact from './components/Landing/Contact';
+import NotFound from './components/Common/NotFound'; // Import NotFound
 import Sidebar from './components/Sidebar/Sidebar';
 import Header, { NavLink as HeaderNavLink } from './components/Header/Header'; // Import Header & NavLink type
 // import './styles/theme.css'; // Removed import
@@ -103,21 +105,32 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   return isAuthenticated ? <DashboardLayout>{children}</DashboardLayout> : <Navigate to="/login" />;
 };
 
+// Main App component needs to be wrapped or modified to use useTheme for ToastContainer
+const AppContent: React.FC = () => {
+  const { theme } = useTheme(); // Get current theme
 
-const App: React.FC = () => {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <Router>
-          <div className="app">
-            <Routes>
-              {/* Public routes with LandingLayout */}
-              <Route element={<LandingLayout />}>
+    <Router>
+      <div className="app">
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={theme} // Use dynamic theme
+        />
+        <Routes>
+          {/* Public routes with LandingLayout */}
+          <Route element={<LandingLayout />}>
                 <Route path="/" element={<Landing />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/features" element={<Features />} />
                 <Route path="/solutions" element={<Solutions />} />
-                <Route path="/pricing" element={<Pricing />} />
                 <Route path="/contact" element={<Contact />} />
               </Route>
 
@@ -150,9 +163,19 @@ const App: React.FC = () => {
                 path="/settings"
                 element={<ProtectedRoute><Settings /></ProtectedRoute>}
               />
+              {/* Catch-all route for 404 Not Found */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
-          </div>
-        </Router>
+      </div>
+    </Router>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <AuthProvider>
+        <AppContent />
       </AuthProvider>
     </ThemeProvider>
   );

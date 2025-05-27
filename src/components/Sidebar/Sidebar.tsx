@@ -1,5 +1,14 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+// import {
+//   FiShield,
+//   FiSearch,
+//   FiCrosshair, // Using FiCrosshair for Phishing as FiFish is not available
+//   FiList,
+//   FiSettings,
+//   FiLogOut,
+// } from 'react-icons/fi';
+// import { FaBug } from 'react-icons/fa'; // Import FaBug for Malware
 import styles from './Sidebar.module.css';
 
 interface SidebarProps {
@@ -26,37 +35,37 @@ const Sidebar: React.FC<SidebarProps> = ({ isMobileSidebarOpen }) => {
         <ul>
           <li className={location.pathname === '/threat-intelligence' ? styles.active : ''}>
             <Link to="/threat-intelligence">
-              <i className="fas fa-shield-alt"></i>
-              Threat Intelligence
+              {/* <FiShield className={styles.icon} /> */}
+              Threat Intel
             </Link>
           </li>
           <li className={location.pathname === '/reconnaissance' ? styles.active : ''}>
             <Link to="/reconnaissance">
-              <i className="fas fa-search"></i>
-              Reconnaissance Detection
+              {/* <FiSearch className={styles.icon} /> */}
+              Reconnaissance
             </Link>
           </li>
           <li className={location.pathname === '/phishing' ? styles.active : ''}>
             <Link to="/phishing">
-              <i className="fas fa-fish"></i>
-              Phishing Detection
+              {/* <FiCrosshair className={styles.icon} /> */}
+              Phishing
             </Link>
           </li>
           <li className={location.pathname === '/malware' ? styles.active : ''}>
             <Link to="/malware">
-              <i className="fas fa-bug"></i>
-              Malware Analysis
+              {/* <FaBug className={styles.icon} /> */}
+              Malware
             </Link>
           </li>
           <li className={location.pathname === '/event-logs' ? styles.active : ''}>
             <Link to="/event-logs">
-              <i className="fas fa-list-alt"></i>
-              Event Log Analysis
+              {/* <FiList className={styles.icon} /> */}
+              Event Logs
             </Link>
           </li>
           <li className={location.pathname === '/settings' ? styles.active : ''}>
             <Link to="/settings">
-              <i className="fas fa-cog"></i>
+              {/* <FiSettings className={styles.icon} /> */}
               Settings
             </Link>
           </li>
@@ -64,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isMobileSidebarOpen }) => {
       </nav>
       <div className={styles.logoutContainer}>
         <button className={styles.logoutButton} onClick={handleLogout}>
-          <i className="fas fa-sign-out-alt"></i>
+          {/* <FiLogOut className={styles.icon} /> */}
           Logout
         </button>
       </div>

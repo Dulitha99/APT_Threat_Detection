@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'; // Added useState and useEffect
 import { Link, useLocation } from 'react-router-dom'; // Added useLocation
+// import { FiMenu, FiX } from 'react-icons/fi';
+// import { FaRegBell, FaUserCircle } from 'react-icons/fa';
 import ThemeToggle from '../Common/ThemeToggle';
 import styles from './Header.module.css';
 
@@ -52,7 +54,8 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
             aria-label="Toggle sidebar"
             aria-expanded={isMobileSidebarOpen}
           >
-            {isMobileSidebarOpen ? '✕' : '☰'}
+            {/* {isMobileSidebarOpen ? <FiX /> : <FiMenu />} */}
+            {isMobileSidebarOpen ? 'X' : 'Menu'}
           </button>
         )}
         <div className={styles.logo}>
@@ -71,7 +74,8 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
           aria-label="Toggle navigation" 
           aria-expanded={isMobileMenuOpen}
         >
-          {isMobileMenuOpen ? '✕' : '☰'}
+          {/* {isMobileMenuOpen ? <FiX /> : <FiMenu />} */}
+          {isMobileMenuOpen ? 'X' : 'Menu'}
         </button>
       )}
 
@@ -115,11 +119,18 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
           // Dashboard specific right content
           <>
             <div className={styles.notifications}>
-              <i className="fas fa-bell"></i>
+              {/* <FaRegBell className={styles.icon} /> */}
+              Bell
               <span className={styles.badge}>3</span>
             </div>
             <div className={styles.user}>
-              <img src="https://via.placeholder.com/40" alt="User" className={styles.avatar} />
+              {/* Placeholder for user avatar - if no image, use icon */}
+              {false ? ( // Replace 'false' with actual logic for avatar image presence
+                <img src="https://via.placeholder.com/40" alt="User" className={styles.avatar} />
+              ) : (
+                // <FaUserCircle className={`${styles.avatar} ${styles.avatarIcon}`} />
+                'User'
+              )}
               <span className={styles.name}>John Doe</span>
             </div>
           </>

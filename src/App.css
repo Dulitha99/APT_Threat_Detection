@@ -1,3 +1,85 @@
+/* src/App.css */
+:root {
+  /* Light Theme Palette */
+  --primary-color: #0969DA; /* Blue - GitHub's blue */
+  --primary-color-darker: #0550AE; /* Slightly darker blue for hover */
+  --secondary-color: #57606A; /* Gray */
+  --success-color: #1A7F37; /* Green - GitHub's green */
+  --warning-color: #D29922; /* Yellow/Orange - GitHub's attention color */
+  --danger-color: #CF222E; /* Red - GitHub's red */
+  --info-color: #0550AE; /* Darker Teal/Cyan for better contrast on light bg */
+
+  /* Muted versions for backgrounds/borders */
+  --primary-color-muted: rgba(9, 105, 218, 0.1);
+  --success-color-muted: rgba(26, 127, 55, 0.1);
+  --warning-color-muted: rgba(210, 153, 34, 0.15);
+  --danger-color-muted: rgba(207, 34, 46, 0.1);
+  --info-color-muted: rgba(5, 80, 174, 0.1);
+
+  --bg-color: #FFFFFF;
+  --bg-alt-color: #F6F8FA; /* GitHub Light default background */
+  --card-bg-color: #FFFFFF;
+  --text-color: #1F2328; /* Near-black for text, GitHub Light primary text */
+  --text-secondary-color: #57606A; /* Lighter gray for secondary text, GitHub Light secondary text */
+  --border-color: #D0D7DE; /* GitHub Light border */
+  --hover-bg-color: #F3F4F6; /* Slightly darker white */
+  --shadow-color: rgba(0, 0, 0, 0.07); /* Softer shadow for light theme */
+
+  /* Typography */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-family-headings: var(--font-family-base);
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+  --line-height-base: 1.6;
+
+  /* Spacing */
+  --spacing-unit: 8px; /* Base unit for margins/paddings */
+  --spacing-xs: calc(0.5 * var(--spacing-unit)); /* 4px */
+  --spacing-sm: var(--spacing-unit); /* 8px */
+  --spacing-md: calc(1.5 * var(--spacing-unit)); /* 12px */
+  --spacing-lg: calc(2 * var(--spacing-unit)); /* 16px */
+  --spacing-xl: calc(3 * var(--spacing-unit)); /* 24px */
+  --spacing-xxl: calc(4 * var(--spacing-unit)); /* 32px */
+
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px; /* GitHub's default */
+  --border-radius-lg: 12px;
+
+  /* Transitions */
+  --transition-speed-fast: 0.15s;
+  --transition-speed-normal: 0.3s;
+  --transition-easing: ease-in-out;
+}
+
+html.dark {
+  /* Dark Theme Palette (aligned with GitHub Dark Dimmed where possible) */
+  --primary-color: #58A6FF; /* Bright Blue - GitHub's blue */
+  --primary-color-darker: #388BFD; /* Slightly darker blue for hover */
+  --secondary-color: #8B949E; /* Gray - GitHub's gray */
+  --success-color: #3FB950; /* Green - GitHub's green */
+  --warning-color: #F0B429; /* Yellow/Orange - Custom, aiming for visibility */
+  --danger-color: #F85149; /* Red - GitHub's red */
+  --info-color: #38BDF8; /* Teal/Cyan - Tailwind's sky-400 */
+
+  /* Muted versions for backgrounds/borders - Dark Theme */
+  --primary-color-muted: rgba(88, 166, 255, 0.15);
+  --success-color-muted: rgba(63, 185, 80, 0.15);
+  --warning-color-muted: rgba(240, 180, 41, 0.15);
+  --danger-color-muted: rgba(248, 81, 73, 0.15);
+  --info-color-muted: rgba(56, 189, 248, 0.15);
+
+  --bg-color: #0D1117; /* Near-black, GitHub Dark Dimmed style */
+  --bg-alt-color: #161B22; /* Slightly lighter dark shade, GitHub Dark Dimmed card background */
+  --card-bg-color: #161B22;
+  --text-color: #C9D1D9; /* Light gray for text, GitHub Dark Dimmed primary text */
+  --text-secondary-color: #8B949E; /* Softer light gray, GitHub Dark Dimmed secondary text */
+  --border-color: #30363D; /* GitHub Dark Dimmed border */
+  --hover-bg-color: #21262D;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
 /* Reset and base styles */
 * {
   margin: 0;
@@ -6,11 +88,15 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
   background-color: var(--bg-color);
   color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+              color var(--transition-speed-normal) var(--transition-easing);
 }
 
 /* App layout */
@@ -30,10 +116,12 @@ body {
 
 .main-content {
   flex: 1;
-  padding: 20px;
-  padding-top: 90px; /* Header height (70px) + Padded space (20px) */
+  padding: var(--spacing-xl); /* 24px */
+  padding-top: calc(70px + var(--spacing-xl)); /* Header height (70px) + Padded space */
   margin-left: 250px; /* Width of the sidebar */
-  transition: margin-left 0.3s ease-in-out, filter 0.3s ease-in-out; /* Added filter transition */
+  transition: margin-left var(--transition-speed-normal) var(--transition-easing), 
+              filter var(--transition-speed-normal) var(--transition-easing),
+              background-color var(--transition-speed-normal) var(--transition-easing);
   background-color: var(--bg-color);
 }
 
@@ -44,10 +132,10 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
   z-index: 1199; /* Below sidebar (1200), above header (1000/1050 for mobile nav) */
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity var(--transition-speed-normal) var(--transition-easing);
 }
 
 .dashboard-layout.sidebar-open-mobile .sidebar-overlay {
@@ -59,6 +147,153 @@ body {
 /* .dashboard-layout.sidebar-open-mobile .main-content {
   filter: blur(2px);
 } */
+
+/* Typography - Base styling for common elements */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  font-family: var(--font-family-headings);
+  margin-bottom: var(--spacing-md); /* 12px */
+  line-height: 1.3;
+  font-weight: 600; /* Slightly bolder headings */
+}
+
+h1 { font-size: calc(var(--font-size-base) * 2); } /* 32px */
+h2 { font-size: calc(var(--font-size-base) * 1.75); } /* 28px */
+h3 { font-size: calc(var(--font-size-base) * 1.5); } /* 24px */
+h4 { font-size: calc(var(--font-size-base) * 1.25); } /* 20px */
+h5 { font-size: var(--font-size-base); } /* 16px */
+h6 { font-size: var(--font-size-sm); } /* 14px */
+
+p {
+  margin-bottom: var(--spacing-lg); /* 16px */
+  line-height: var(--line-height-base);
+  color: var(--text-secondary-color);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed-fast) var(--transition-easing);
+}
+
+a:hover {
+  color: var(--primary-color-darker);
+  text-decoration: underline;
+}
+
+/* General Interactive Elements Styling (Buttons, Inputs) */
+button, .button, input[type="button"], input[type="submit"], input[type="reset"] {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  background-color: var(--primary-color);
+  color: var(--bg-color); /* Text color that contrasts with primary */
+  border: 1px solid var(--primary-color);
+  padding: var(--spacing-sm) var(--spacing-lg); /* 8px 16px */
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-speed-fast) var(--transition-easing),
+              color var(--transition-speed-fast) var(--transition-easing),
+              border-color var(--transition-speed-fast) var(--transition-easing),
+              transform var(--transition-speed-fast) var(--transition-easing),
+              box-shadow var(--transition-speed-fast) var(--transition-easing);
+  font-weight: 500;
+}
+
+html.dark button, html.dark .button, html.dark input[type="button"], html.dark input[type="submit"], html.dark input[type="reset"] {
+  color: var(--text-color); /* Ensure contrast with dark primary */
+}
+
+
+button:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+  background-color: var(--primary-color-darker);
+  border-color: var(--primary-color-darker);
+  transform: translateY(-1px); /* Subtle lift */
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+button:active, .button:active, input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+button:focus, .button:focus, input[type="button"]:focus, input[type="submit"]:focus, input[type="reset"]:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.3); /* Focus ring - adjust color if needed */
+}
+
+/* Secondary Button Style */
+.button-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--bg-color); /* Text color contrasting secondary */
+}
+
+html.dark .button-secondary {
+  color: var(--text-color);
+}
+
+.button-secondary:hover {
+  background-color: var(--hover-bg-color); /* Generic hover for secondary */
+  border-color: var(--hover-bg-color);
+  color: var(--text-color); /* Text color for hovered secondary */
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm) var(--spacing-md); /* 8px 12px */
+  background-color: var(--bg-alt-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  transition: border-color var(--transition-speed-fast) var(--transition-easing), 
+              box-shadow var(--transition-speed-fast) var(--transition-easing);
+  width: 100%; /* Default to full width, can be overridden */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.2); /* Adjusted for better visibility */
+}
+
+/* Card styles */
+.card {
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg); /* Larger radius for cards */
+  padding: var(--spacing-lg); /* 16px */
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: transform var(--transition-speed-normal) var(--transition-easing), 
+              box-shadow var(--transition-speed-normal) var(--transition-easing),
+              background-color var(--transition-speed-normal) var(--transition-easing),
+              border-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--shadow-color);
+}
 
 /* Scroll Animation Base States & Keyframes */
 /* Add any initial state classes that the hook might apply */
@@ -72,7 +307,6 @@ body {
 
 /* General animation class for elements that will be animated on scroll */
 .scroll-animated {
-  /* Default to hidden, will be made visible by animation */
   opacity: 0; 
   transition-property: opacity, transform;
   transition-duration: 0.6s; /* Default duration */
@@ -88,21 +322,23 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-/* You can add more like animate-slideInLeft, etc. */
 
 /* Placeholder Content Style */
 .placeholder-content {
   border: 2px dashed var(--border-color);
-  padding: 2rem;
+  padding: var(--spacing-xl); /* 24px */
   text-align: center;
-  color: var(--text-secondary);
-  border-radius: 8px;
-  margin-top: 1rem;
+  color: var(--text-secondary-color);
+  border-radius: var(--border-radius-md);
+  margin-top: var(--spacing-lg); /* 16px */
   min-height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--hover-bg); /* Slight background to differentiate */
+  background-color: var(--bg-alt-color);
+  transition: border-color var(--transition-speed-normal) var(--transition-easing), 
+              color var(--transition-speed-normal) var(--transition-easing),
+              background-color var(--transition-speed-normal) var(--transition-easing);
 }
 
 /* Simple Page Transition Wrapper */
@@ -113,116 +349,64 @@ body {
 @keyframes fadeInPage {
   from {
     opacity: 0;
-    /* Optional: transform: translateY(10px); */
+    /* transform: translateY(10px); */
   }
   to {
     opacity: 1;
-    /* Optional: transform: translateY(0); */
+    /* transform: translateY(0); */
   }
-}
-
-
-/* Existing Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Card animations */
-.card {
-  animation: scaleIn 0.3s ease-out;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px var(--shadow-color);
-}
-
-/* Button animations */
-button {
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  /* transform: translateY(-1px); /* This can cause layout shifts for buttons not intended to move */
-}
-
-button:active {
-  transform: translateY(0);
-}
-
-/* Link animations */
-a {
-  transition: color 0.3s ease;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0; /* Sidebar is an overlay or hidden */
-    padding: 15px;
-    padding-top: 85px; /* Header can be auto height, adjust this if header is taller */
+    padding: var(--spacing-lg); /* 16px */
+    padding-top: calc(60px + var(--spacing-lg)); /* Adjust if mobile header height is different */
   }
-
-  /* .dashboard-layout { */
-    /* flex-direction: column; /* Removed to allow overlay sidebar */
-  /* } */
+  h1 { font-size: calc(var(--font-size-base) * 1.75); } /* 28px */
+  h2 { font-size: calc(var(--font-size-base) * 1.5); } /* 24px */
+  h3 { font-size: calc(var(--font-size-base) * 1.25); } /* 20px */
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: var(--spacing-sm); /* 8px */
+  height: var(--spacing-sm); /* 8px */
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--shadow-color);
+  background: var(--bg-alt-color);
+  border-radius: var(--border-radius-sm);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--border-color);
-  border-radius: 4px;
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-speed-fast) var(--transition-easing);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--text-secondary-color);
 }
 
 /* Loading spinner */
+.loading-spinner-container { /* Optional: for centering spinner */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-xl);
+}
+
 .loading-spinner {
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--shadow-color);
+  width: var(--spacing-xl); /* 24px */
+  height: var(--spacing-xl); /* 24px */
+  border: 3px solid var(--border-color); /* Thicker border for visibility */
   border-radius: 50%;
   border-top-color: var(--primary-color);
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s linear infinite;
+  transition: border-color var(--transition-speed-normal) var(--transition-easing), 
+              border-top-color var(--transition-speed-normal) var(--transition-easing);
 }
 
 @keyframes spin {
@@ -231,21 +415,83 @@ a {
   }
 }
 
-/* Toast notifications */
-.toast {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 12px 24px;
-  background: var(--card-bg);
-  color: var(--text-color);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px var(--shadow-color);
-  z-index: 1000;
-  animation: slideIn 0.3s ease-out;
+/* General utility classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+
+/* Ensure react-toastify uses theme variables */
+/* This might need to be in a more specific component or imported after App.css if overrides are needed */
+.Toastify__toast-container {
+  /* Container styles */
 }
 
-/* Tooltip */
+.Toastify__toast {
+  font-family: var(--font-family-base);
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.Toastify__toast--success {
+  background-color: var(--success-color) !important; /* May need !important to override defaults */
+  color: #fff !important; /* Ensure contrast */
+}
+.Toastify__toast--error {
+  background-color: var(--danger-color) !important;
+  color: #fff !important;
+}
+.Toastify__toast--warning {
+  background-color: var(--warning-color) !important;
+  color: var(--text-color) !important; /* Warning often needs dark text */
+}
+.Toastify__toast--info {
+  background-color: var(--info-color) !important;
+  color: #fff !important;
+}
+
+.Toastify__close-button {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+html.dark .Toastify__toast {
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+html.dark .Toastify__toast--success {
+  background-color: var(--success-color) !important;
+  color: var(--bg-color) !important; /* Dark text on light green or light text on dark green */
+}
+html.dark .Toastify__toast--error {
+  background-color: var(--danger-color) !important;
+  color: var(--bg-color) !important;
+}
+html.dark .Toastify__toast--warning {
+  background-color: var(--warning-color) !important;
+  color: #000 !important; /* Dark text on yellow */
+}
+html.dark .Toastify__toast--info {
+  background-color: var(--info-color) !important;
+  color: var(--bg-color) !important;
+}
+
+html.dark .Toastify__close-button {
+  color: var(--text-color);
+}
+
+/* Tooltip (if used, from previous App.css) */
 .tooltip {
   position: relative;
   display: inline-block;
@@ -256,13 +502,24 @@ a {
   position: absolute;
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%);
-  padding: 8px 12px;
-  background: var(--card-bg);
+  transform: translateX(-50%) translateY(calc(-1 * var(--spacing-xs))); /* Add small gap */
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--card-bg-color); /* Use card bg for tooltip */
   color: var(--text-color);
-  border-radius: 6px;
-  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
   white-space: nowrap;
-  box-shadow: 0 4px 12px var(--shadow-color);
-  z-index: 10;
+  box-shadow: 0 2px 6px var(--shadow-color);
+  z-index: 10000; /* Ensure tooltip is on top */
+  opacity: 0; /* Start hidden */
+  animation: fadeInTooltip 0.2s var(--transition-easing) forwards;
+  animation-delay: 0.3s; /* Slight delay before showing */
+}
+
+@keyframes fadeInTooltip {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(calc(-1 * var(--spacing-xs) - 2px)); /* Final position */
+  }
 }
