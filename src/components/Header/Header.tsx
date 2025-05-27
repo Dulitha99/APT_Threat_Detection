@@ -83,9 +83,14 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
       {pageType === 'landing' && navLinks && scrollToSection && (
         <nav className={`${styles.nav} ${styles.desktopNav}`}> {/* Add desktopNav class */}
           {navLinks.map(link => (
-            <a key={link.id} onClick={() => scrollToSection(link.id)}>
+            <button
+              key={link.id}
+              type="button"
+              onClick={() => scrollToSection(link.id)}
+              className={styles.navLinkButton} // You might need to create this style
+            >
               {link.text}
-            </a>
+            </button>
           ))}
         </nav>
       )}
@@ -94,9 +99,14 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
       {pageType === 'landing' && isMobileMenuOpen && navLinks && scrollToSection && (
         <nav className={styles.mobileNav}>
           {navLinks.map(link => (
-            <a key={link.id} onClick={() => { scrollToSection(link.id); toggleMobileMenu(); }}>
+            <button
+              key={link.id}
+              type="button"
+              onClick={() => { scrollToSection(link.id); toggleMobileMenu(); }}
+              className={styles.navLinkButton} // You might need to create this style
+            >
               {link.text}
-            </a>
+            </button>
           ))}
         </nav>
       )}

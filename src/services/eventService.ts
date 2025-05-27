@@ -1,4 +1,3 @@
-import apiClient from './apiClient';
 import { mockEvents } from '../mocks/events'; // Assuming mockEvents is already defined
 
 const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
