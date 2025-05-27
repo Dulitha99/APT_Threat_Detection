@@ -1,39 +1,39 @@
 .sidebar {
   width: 250px;
   height: 100vh;
-  background-color: var(--card-bg-color); /* Use theme variable */
-  color: var(--text-color); /* Use theme variable */
-  padding: var(--spacing-lg); /* 16px */
+  background-color: var(--secondary-bg); /* Updated - sidebar often a bit darker or different from main bg */
+  color: var(--primary-text); /* Updated */
+  padding: var(--spacing-lg); 
   position: fixed;
   left: 0;
   top: 0;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color); /* Updated */
   transition: background-color var(--transition-speed-normal) var(--transition-easing),
               color var(--transition-speed-normal) var(--transition-easing),
               border-color var(--transition-speed-normal) var(--transition-easing);
 }
 
 .logo {
-  padding: var(--spacing-md) 0; /* 12px top/bottom */
+  padding: var(--spacing-md) 0; 
   text-align: center;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: var(--spacing-lg); /* 16px */
+  border-bottom: 1px solid var(--divider-color); /* Updated */
+  margin-bottom: var(--spacing-lg); 
   transition: border-color var(--transition-speed-normal) var(--transition-easing);
 }
 
 .logo h2 {
   margin: 0;
-  font-size: 1.75rem; /* 28px */
-  font-weight: 700;
-  color: var(--primary-color);
+  font-size: var(--font-size-xl); /* Updated - was 1.75rem */
+  font-weight: 700; /* Keep hardcoded for now, or add to theme */
+  color: var(--accent-color); /* Updated */
   transition: color var(--transition-speed-fast) var(--transition-easing);
 }
 
 .nav {
   flex: 1;
-  overflow-y: auto; /* Add scroll for many items */
+  overflow-y: auto; 
 }
 
 .nav ul {
@@ -43,98 +43,114 @@
 }
 
 .nav li {
-  margin: var(--spacing-xs) 0; /* 4px */
+  margin: var(--spacing-xs) 0; 
 }
 
 .nav a {
-  color: var(--text-secondary-color); /* Softer color for non-active links */
+  color: var(--secondary-text); /* Updated */
   text-decoration: none;
   display: flex;
   align-items: center;
-  padding: var(--spacing-md); /* 12px */
-  border-radius: var(--border-radius-md); /* 6px */
-  font-weight: 500;
+  padding: var(--spacing-md); 
+  border-radius: var(--border-radius-md); 
+  font-weight: 500; /* Keep hardcoded for now, or add to theme */
   transition: background-color var(--transition-speed-fast) var(--transition-easing),
-              color var(--transition-speed-fast) var(--transition-easing);
+              color var(--transition-speed-fast) var(--transition-easing),
+              outline var(--transition-speed-fast) var(--transition-easing); /* Added outline transition */
 }
 
 .nav a:hover {
-  background-color: var(--hover-bg-color);
-  color: var(--text-color); /* Slightly emphasize text on hover */
+  background-color: var(--tertiary-bg); /* Updated - subtle hover */
+  color: var(--primary-text); /* Updated */
 }
 
-.nav .icon { /* Class for react-icons */
-  margin-right: var(--spacing-md); /* 12px */
-  font-size: 1.25rem; /* 20px */
-  width: 20px; /* Ensure consistent width */
+.nav a:focus-visible {
+  background-color: var(--tertiary-bg);
+  color: var(--primary-text);
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px; /* Offset inwards */
+}
+
+.nav .icon, .logoutButton .icon { /* Combined for consistent icon styling */
+  margin-right: var(--spacing-md); 
+  font-size: var(--font-size-lg); 
+  width: var(--font-size-lg); 
   text-align: center;
-  flex-shrink: 0; /* Prevent icon from shrinking */
+  flex-shrink: 0; 
   transition: color var(--transition-speed-fast) var(--transition-easing);
+  display: inline-flex; 
+  align-items: center;
+}
+
+.logoutButton .icon { /* Specific adjustment for logout button icon if needed */
+  margin-right: var(--spacing-sm); /* Slightly less margin for button */
 }
 
 .active a {
-  background-color: var(--primary-color);
-  color: var(--bg-color); /* Text color on primary background */
+  background-color: var(--accent-color); /* Updated */
+  color: var(--button-primary-text); /* Updated - for high contrast on accent */
 }
 
-html.dark .active a {
-    color: var(--text-color); /* Ensure contrast on dark primary */
-}
+/* No need for html.dark .active a if --button-primary-text handles dark mode correctly */
 
 .active a:hover {
-  background-color: var(--primary-color-darker); /* Darken on hover for active link */
-  color: var(--bg-color);
+  background-color: var(--accent-color-hover); /* Updated */
+  color: var(--button-primary-text); /* Updated */
 }
-html.dark .active a:hover {
-    color: var(--text-color);
-}
+/* No need for html.dark .active a:hover if --button-primary-text handles dark mode */
 
 
-.active a .icon { /* Icon color for active link */
-  color: var(--bg-color); /* Match text color on primary background */
+.active a .icon { 
+  color: var(--button-primary-text); /* Updated */
 }
-html.dark .active a .icon {
-    color: var(--text-color);
-}
+/* No need for html.dark .active a .icon */
 
 
 .logoutContainer {
-  margin-top: auto; /* Pushes logout to the bottom */
-  padding-top: var(--spacing-lg); /* 16px */
-  border-top: 1px solid var(--border-color);
+  margin-top: auto; 
+  padding-top: var(--spacing-lg); 
+  border-top: 1px solid var(--divider-color); /* Updated */
   transition: border-color var(--transition-speed-normal) var(--transition-easing);
 }
 
 .logoutButton {
-  /* Using global button styles as a base is preferred. */
-  /* This is styling it like a danger button */
   width: 100%;
-  padding: var(--spacing-md); /* 12px */
-  background-color: var(--danger-color);
-  color: white; /* Ensure contrast with danger color */
+  padding: var(--spacing-md); 
+  background-color: var(--error-color); /* Updated */
+  color: var(--button-primary-text); /* Updated - assuming light text on error color */
   border: none;
-  border-radius: var(--border-radius-md); /* 6px */
+  border-radius: var(--border-radius-md); 
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-base); /* 16px */
-  font-weight: 500;
-  transition: background-color var(--transition-speed-fast) var(--transition-easing);
+  font-size: var(--font-size-md); /* Updated */
+  font-weight: 500; /* Keep hardcoded for now, or add to theme */
+  transition: background-color var(--transition-speed-fast) var(--transition-easing),
+              outline var(--transition-speed-fast) var(--transition-easing); /* Added outline transition */
 }
 
 .logoutButton:hover {
-  background-color: var(--danger-color-darker); /* Make sure --danger-color-darker is defined in App.css */
+  background-color: var(--error-color-hover); /* Updated */
+  /* Fallback not strictly needed if --error-color-hover is defined, but kept for safety if it might be missing */
 }
-/* Fallback if --danger-color-darker is not defined, slightly darken */
-html:not([style*='--danger-color-darker']) .logoutButton:hover {
-    filter: brightness(90%);
+html.dark .logoutButton { /* Ensure text contrast if not covered by --button-primary-text */
+    color: var(--primary-bg); /* Or specific color for dark theme error button text */
+}
+html.dark .logoutButton:hover {
+    background-color: var(--error-color-hover);
+}
+
+.logoutButton:focus-visible {
+  outline: 2px solid var(--error-color-hover);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--secondary-bg), 0 0 0 4px var(--error-color-hover); /* Inner and outer shadow for contrast */
 }
 
 
-.logoutButton .icon { /* Class for react-icons in button */
-  margin-right: var(--spacing-sm); /* 8px */
-  font-size: 1.2rem; /* ~19px */
+.logoutButton .icon { 
+  margin-right: var(--spacing-sm); 
+  font-size: var(--font-size-lg); /* Updated - was 1.2rem */
 }
 
 /* Responsive Styles */
@@ -144,10 +160,10 @@ html:not([style*='--danger-color-darker']) .logoutButton:hover {
     left: 0;
     top: 0;
     height: 100%;
-    z-index: 1200; /* Above overlay (1199) and header (1000) */
+    z-index: 1200; 
     transform: translateX(-100%);
-    transition: transform var(--transition-speed-normal) var(--transition-easing);
-    box-shadow: 2px 0 10px var(--shadow-color); /* Add shadow for overlay effect */
+  transition: transform var(--transition-speed-normal) var(--transition-easing), box-shadow var(--transition-speed-normal) var(--transition-easing); /* Added box-shadow transition */
+    box-shadow: var(--shadow-lg); /* Updated */
   }
 
   .sidebarOpenMobile {

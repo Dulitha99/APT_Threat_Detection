@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // Added useState and useEffect
 import { Link, useLocation } from 'react-router-dom'; // Added useLocation
-// import { FiMenu, FiX } from 'react-icons/fi';
-// import { FaRegBell, FaUserCircle } from 'react-icons/fa';
+import { FiMenu, FiX, FiBell, FiUser } from 'react-icons/fi'; // Updated imports
+// import { FaRegBell, FaUserCircle } from 'react-icons/fa'; // Kept for reference if needed
 import ThemeToggle from '../Common/ThemeToggle';
 import styles from './Header.module.css';
 
@@ -54,8 +54,7 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
             aria-label="Toggle sidebar"
             aria-expanded={isMobileSidebarOpen}
           >
-            {/* {isMobileSidebarOpen ? <FiX /> : <FiMenu />} */}
-            {isMobileSidebarOpen ? 'X' : 'Menu'}
+            {isMobileSidebarOpen ? <FiX /> : <FiMenu />}
           </button>
         )}
         <div className={styles.logo}>
@@ -74,8 +73,7 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
           aria-label="Toggle navigation" 
           aria-expanded={isMobileMenuOpen}
         >
-          {/* {isMobileMenuOpen ? <FiX /> : <FiMenu />} */}
-          {isMobileMenuOpen ? 'X' : 'Menu'}
+            {isMobileMenuOpen ? <FiX /> : <FiMenu />}
         </button>
       )}
 
@@ -99,7 +97,6 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
       {pageType === 'landing' && isMobileMenuOpen && navLinks && scrollToSection && (
         <nav className={styles.mobileNav}>
           {navLinks.map(link => (
-
             <button
               key={link.id}
               type="button"
@@ -130,8 +127,7 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
           // Dashboard specific right content
           <>
             <div className={styles.notifications}>
-              {/* <FaRegBell className={styles.icon} /> */}
-              Bell
+              <FiBell className={styles.icon} />
               <span className={styles.badge}>3</span>
             </div>
             <div className={styles.user}>
@@ -139,8 +135,7 @@ const Header: React.FC<HeaderProps> = ({ pageType, navLinks, scrollToSection, is
               {false ? ( // Replace 'false' with actual logic for avatar image presence
                 <img src="https://via.placeholder.com/40" alt="User" className={styles.avatar} />
               ) : (
-                // <FaUserCircle className={`${styles.avatar} ${styles.avatarIcon}`} />
-                'User'
+                <FiUser className={`${styles.avatar} ${styles.avatarIcon}`} />
               )}
               <span className={styles.name}>John Doe</span>
             </div>

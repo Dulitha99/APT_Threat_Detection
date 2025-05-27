@@ -1,7 +1,7 @@
 .footer {
-  background-color: var(--footer-bg); /* Use CSS variable */
-  color: var(--footer-text); /* Use CSS variable */
-  padding: 4rem 2rem;
+  background-color: var(--secondary-bg); /* Updated - using a slightly lighter dark for footer in dark mode */
+  color: var(--secondary-text); /* Updated */
+  padding: var(--spacing-xl) var(--spacing-lg); /* Updated */
 }
 
 .footerContent {
@@ -9,34 +9,43 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  gap: var(--spacing-lg); /* Updated */
 }
 
 .footerSection h3 {
-  font-size: 1.25rem;
+  font-size: var(--font-size-lg); /* Updated */
   font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: var(--footer-text); /* Use CSS variable */
+  margin-bottom: var(--spacing-md); /* Updated */
+  color: var(--primary-text); /* Updated - headings should be primary text */
 }
 
 .footerSection p {
-  color: var(--footer-link); /* Use CSS variable */
-  margin-bottom: 1.5rem;
+  color: var(--secondary-text); /* Updated */
+  margin-bottom: var(--spacing-md); /* Updated */
+  font-size: var(--font-size-sm); /* Added for consistency */
 }
 
 .social {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md); /* Updated */
 }
 
 .social a {
-  color: var(--footer-link); /* Use CSS variable */
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+  color: var(--secondary-text); /* Updated */
+  font-size: var(--font-size-xl); /* Updated */
+  transition: color var(--transition-speed-normal) var(--transition-easing); /* Added easing */
+  border-radius: var(--border-radius-sm); /* For focus outline */
+  padding: var(--spacing-xs); /* Add some padding for focus outline to not be too tight */
 }
 
 .social a:hover {
-  color: var(--footer-link-hover); /* Use CSS variable */
+  color: var(--accent-color); /* Updated */
+}
+
+.social a:focus-visible {
+  color: var(--accent-color); /* Ensure text color changes on focus */
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
 }
 
 .footerSection ul {
@@ -45,34 +54,45 @@
 }
 
 .footerSection ul li {
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--spacing-sm); /* Updated */
 }
 
 .footerSection ul li a {
-  color: var(--footer-link); /* Use CSS variable */
+  color: var(--secondary-text); /* Updated */
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color var(--transition-speed-normal) var(--transition-easing); /* Added easing */
+  font-size: var(--font-size-sm); /* Added for consistency */
+  border-radius: var(--border-radius-sm); /* For focus outline */
+  padding: var(--spacing-xs) 0; /* Minimal padding for text links */
 }
 
 .footerSection ul li a:hover {
-  color: var(--footer-link-hover); /* Use CSS variable */
+  color: var(--accent-color); /* Updated */
+  text-decoration: underline; /* Add underline on hover for text links */
+}
+
+.footerSection ul li a:focus-visible {
+  color: var(--accent-color); /* Ensure text color changes on focus */
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
+  text-decoration: underline; /* Maintain underline on focus */
 }
 
 .footerBottom {
   text-align: center;
-  padding-top: 2rem;
-  margin-top: 2rem;
-  border-top: 1px solid var(--border-color); /* Use CSS variable */
+  padding-top: var(--spacing-lg); /* Updated */
+  margin-top: var(--spacing-lg); /* Updated */
+  border-top: 1px solid var(--divider-color); /* Updated */
 }
 
 .footerBottom p {
-  color: var(--footer-link); /* Use CSS variable */
-  font-size: 0.875rem;
+  color: var(--secondary-text); /* Updated */
+  font-size: var(--font-size-xs); /* Updated */
 }
 
 @media (max-width: 768px) {
   .footer {
-    padding: 3rem 1rem;
+    padding: var(--spacing-lg) var(--spacing-md); /* Updated */
   }
 
   .footerContent {
