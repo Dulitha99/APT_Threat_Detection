@@ -1,31 +1,39 @@
 .sidebar {
   width: 250px;
   height: 100vh;
-  background-color: var(--card-bg); /* Use CSS variable */
-  color: var(--text-color); /* Use CSS variable */
-  padding: 20px;
+  background-color: var(--card-bg-color); /* Use theme variable */
+  color: var(--text-color); /* Use theme variable */
+  padding: var(--spacing-lg); /* 16px */
   position: fixed;
   left: 0;
   top: 0;
   display: flex;
   flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  transition: background-color var(--transition-speed-normal) var(--transition-easing),
+              color var(--transition-speed-normal) var(--transition-easing),
+              border-color var(--transition-speed-normal) var(--transition-easing);
 }
 
 .logo {
-  padding: 20px 0;
+  padding: var(--spacing-md) 0; /* 12px top/bottom */
   text-align: center;
-  border-bottom: 1px solid var(--border-color); /* Use CSS variable */
-  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-lg); /* 16px */
+  transition: border-color var(--transition-speed-normal) var(--transition-easing);
 }
 
 .logo h2 {
   margin: 0;
-  font-size: 24px;
-  color: var(--primary-color); /* Use CSS variable */
+  font-size: 1.75rem; /* 28px */
+  font-weight: 700;
+  color: var(--primary-color);
+  transition: color var(--transition-speed-fast) var(--transition-easing);
 }
 
 .nav {
   flex: 1;
+  overflow-y: auto; /* Add scroll for many items */
 }
 
 .nav ul {
@@ -35,60 +43,98 @@
 }
 
 .nav li {
-  margin: 10px 0;
+  margin: var(--spacing-xs) 0; /* 4px */
 }
 
 .nav a {
-  color: var(--text-color); /* Use CSS variable */
+  color: var(--text-secondary-color); /* Softer color for non-active links */
   text-decoration: none;
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  padding: var(--spacing-md); /* 12px */
+  border-radius: var(--border-radius-md); /* 6px */
+  font-weight: 500;
+  transition: background-color var(--transition-speed-fast) var(--transition-easing),
+              color var(--transition-speed-fast) var(--transition-easing);
 }
 
 .nav a:hover {
-  background-color: var(--hover-bg); /* Use CSS variable */
+  background-color: var(--hover-bg-color);
+  color: var(--text-color); /* Slightly emphasize text on hover */
 }
 
-.nav i {
-  margin-right: 10px;
-  width: 20px;
+.nav .icon { /* Class for react-icons */
+  margin-right: var(--spacing-md); /* 12px */
+  font-size: 1.25rem; /* 20px */
+  width: 20px; /* Ensure consistent width */
   text-align: center;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  transition: color var(--transition-speed-fast) var(--transition-easing);
 }
 
 .active a {
-  background-color: var(--hover-bg); /* Use CSS variable, or a specific active color if defined */
+  background-color: var(--primary-color);
+  color: var(--bg-color); /* Text color on primary background */
 }
 
+html.dark .active a {
+    color: var(--text-color); /* Ensure contrast on dark primary */
+}
+
+.active a:hover {
+  background-color: var(--primary-color-darker); /* Darken on hover for active link */
+  color: var(--bg-color);
+}
+html.dark .active a:hover {
+    color: var(--text-color);
+}
+
+
+.active a .icon { /* Icon color for active link */
+  color: var(--bg-color); /* Match text color on primary background */
+}
+html.dark .active a .icon {
+    color: var(--text-color);
+}
+
+
 .logoutContainer {
-  margin-top: auto;
-  padding-top: 20px;
-  border-top: 1px solid var(--border-color); /* Use CSS variable */
+  margin-top: auto; /* Pushes logout to the bottom */
+  padding-top: var(--spacing-lg); /* 16px */
+  border-top: 1px solid var(--border-color);
+  transition: border-color var(--transition-speed-normal) var(--transition-easing);
 }
 
 .logoutButton {
+  /* Using global button styles as a base is preferred. */
+  /* This is styling it like a danger button */
   width: 100%;
-  padding: 12px;
-  background-color: var(--error-color); /* Use CSS variable */
-  color: white; /* Remains white for good contrast on red */
+  padding: var(--spacing-md); /* 12px */
+  background-color: var(--danger-color);
+  color: white; /* Ensure contrast with danger color */
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius-md); /* 6px */
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  transition: background-color 0.3s;
+  font-size: var(--font-size-base); /* 16px */
+  font-weight: 500;
+  transition: background-color var(--transition-speed-fast) var(--transition-easing);
 }
 
 .logoutButton:hover {
-  background-color: var(--error-color-hover); /* Use CSS variable */
+  background-color: var(--danger-color-darker); /* Make sure --danger-color-darker is defined in App.css */
+}
+/* Fallback if --danger-color-darker is not defined, slightly darken */
+html:not([style*='--danger-color-darker']) .logoutButton:hover {
+    filter: brightness(90%);
 }
 
-.logoutButton i {
-  margin-right: 10px;
+
+.logoutButton .icon { /* Class for react-icons in button */
+  margin-right: var(--spacing-sm); /* 8px */
+  font-size: 1.2rem; /* ~19px */
 }
 
 /* Responsive Styles */
@@ -98,10 +144,10 @@
     left: 0;
     top: 0;
     height: 100%;
-    z-index: 1200; /* Above overlay (1199) and header's mobile nav (1050) */
+    z-index: 1200; /* Above overlay (1199) and header (1000) */
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: add shadow for overlay effect */
+    transition: transform var(--transition-speed-normal) var(--transition-easing);
+    box-shadow: 2px 0 10px var(--shadow-color); /* Add shadow for overlay effect */
   }
 
   .sidebarOpenMobile {

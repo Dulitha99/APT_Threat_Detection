@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import { FiGithub, FiTwitter, FiLinkedin } from 'react-icons/fi';
 import styles from './Footer.module.css';
 
 interface FooterProps {}
@@ -12,14 +13,17 @@ const Footer: React.FC<FooterProps> = () => {
           <h3>SecureXDR</h3>
           <p>Open-source threat detection and response solution</p>
           <div className={styles.social}>
-            <a href="https://github.com/securexdr" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-github"></i>
+            <a href="https://github.com/securexdr" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              {/* <FiGithub /> */}
+              GitHub
             </a>
-            <a href="https://twitter.com/securexdr" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-twitter"></i>
+            <a href="https://twitter.com/securexdr" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              {/* <FiTwitter /> */}
+              Twitter
             </a>
-            <a href="https://linkedin.com/company/securexdr" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-linkedin"></i>
+            <a href="https://linkedin.com/company/securexdr" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              {/* <FiLinkedin /> */}
+              LinkedIn
             </a>
           </div>
         </div>
